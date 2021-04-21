@@ -621,7 +621,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2078 words">11 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3055 words">16 min</span>
 
 
           <!-- page views -->
@@ -1908,6 +1908,601 @@
 
 <h1 id="creational-patterns">Creational Patterns</h1>
 <hr />
+
+<h2 id="design-pattern-abstract-factory">Design Pattern Abstract Factory</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19101.png" alt="Design Pattern Abstract Factory" />
+<em>Design Pattern Abstract Factory</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//ProductA is abstract product A</span>
+<span class="k">type</span> <span class="n">ProductA</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">TestA</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//ProductB is abstract product B</span>
+<span class="k">type</span> <span class="n">ProductB</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">TestB</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Factory is abstract factory</span>
+<span class="k">type</span> <span class="n">Factory</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">CreateA</span><span class="p">()</span> <span class="n">ProductA</span>
+    <span class="n">CreateB</span><span class="p">()</span> <span class="n">ProductB</span>
+<span class="p">}</span>
+
+<span class="c">//ProductA1 is concrete product A1</span>
+<span class="k">type</span> <span class="n">ProductA1</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//TestA is implementation of the ProductA interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">ProductA1</span><span class="p">)</span> <span class="n">TestA</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test A1"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//ProductB1 is concrete product B1</span>
+<span class="k">type</span> <span class="n">ProductB1</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//TestB is implementation of the ProductB interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">ProductB1</span><span class="p">)</span> <span class="n">TestB</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test B1"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//ProductA2 is concrete product A2</span>
+<span class="k">type</span> <span class="n">ProductA2</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//TestA is implementation of the ProductA interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">ProductA2</span><span class="p">)</span> <span class="n">TestA</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test A2"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//ProductB2 is concrete product B2</span>
+<span class="k">type</span> <span class="n">ProductB2</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//TestB is implementation of the ProductB interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">ProductB2</span><span class="p">)</span> <span class="n">TestB</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test B2"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Factory1 is concrete factory 1</span>
+<span class="k">type</span> <span class="n">Factory1</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//CreateA is implementation of the Factory interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">f</span> <span class="n">Factory1</span><span class="p">)</span> <span class="n">CreateA</span><span class="p">()</span> <span class="n">ProductA</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ProductA1</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c">//CreateB is implementation of the Factory interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">f</span> <span class="n">Factory1</span><span class="p">)</span> <span class="n">CreateB</span><span class="p">()</span> <span class="n">ProductB</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ProductB1</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c">//Factory2 is concrete factory 2</span>
+<span class="k">type</span> <span class="n">Factory2</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//CreateA is implementation of the Factory interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">f</span> <span class="n">Factory2</span><span class="p">)</span> <span class="n">CreateA</span><span class="p">()</span> <span class="n">ProductA</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ProductA2</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c">//CreateB is implementation of the Factory interface method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">f</span> <span class="n">Factory2</span><span class="p">)</span> <span class="n">CreateB</span><span class="p">()</span> <span class="n">ProductB</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ProductB2</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c">//client code:</span>
+
+<span class="c">//TestFactory creates and tests factories</span>
+<span class="k">func</span> <span class="n">TestFactory</span><span class="p">(</span><span class="n">factory</span> <span class="n">Factory</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">productA</span> <span class="o">:=</span> <span class="n">factory</span><span class="o">.</span><span class="n">CreateA</span><span class="p">()</span>
+    <span class="n">productB</span> <span class="o">:=</span> <span class="n">factory</span><span class="o">.</span><span class="n">CreateB</span><span class="p">()</span>
+    <span class="n">productA</span><span class="o">.</span><span class="n">TestA</span><span class="p">()</span>
+    <span class="n">productB</span><span class="o">.</span><span class="n">TestB</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">TestFactory</span><span class="p">(</span><span class="n">Factory1</span><span class="p">{})</span>
+<span class="c">//printed: test A1</span>
+<span class="c">//         test B1</span>
+<span class="n">TestFactory</span><span class="p">(</span><span class="n">Factory2</span><span class="p">{})</span>
+<span class="c">//printed: test A2</span>
+<span class="c">//         test B2</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-builder">Design Pattern Builder</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19102.png" alt="Design Pattern Builder" />
+<em>Design Pattern Builder</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//TextWorker is AbstractBuilder</span>
+<span class="k">type</span> <span class="n">TextWorker</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">AddText</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="n">AddNewLine</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextBuilder is ConcreteBuilder 1</span>
+<span class="k">type</span> <span class="n">TextBuilder</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Text</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">//AddText adds text to the current line </span>
+<span class="k">func</span> <span class="p">(</span><span class="n">tb</span> <span class="o">*</span><span class="n">TextBuilder</span><span class="p">)</span> <span class="n">AddText</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">Text</span> <span class="o">+=</span> <span class="n">text</span>
+<span class="p">}</span>
+
+<span class="c">//AddNewLine adds new line </span>
+<span class="k">func</span> <span class="p">(</span><span class="n">tb</span> <span class="o">*</span><span class="n">TextBuilder</span><span class="p">)</span> <span class="n">AddNewLine</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">Text</span> <span class="o">+=</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//HTMLBuilder is ConcreteBuilder 2</span>
+<span class="k">type</span> <span class="n">HTMLBuilder</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">HTML</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">//AddText adds span to the current line </span>
+<span class="k">func</span> <span class="p">(</span><span class="n">tb</span> <span class="o">*</span><span class="n">HTMLBuilder</span><span class="p">)</span> <span class="n">AddText</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">HTML</span> <span class="o">+=</span> <span class="p">(</span><span class="s">"&lt;span&gt;"</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s">"&lt;/span&gt;"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//AddNewLine adds new line </span>
+<span class="k">func</span> <span class="p">(</span><span class="n">tb</span> <span class="o">*</span><span class="n">HTMLBuilder</span><span class="p">)</span> <span class="n">AddNewLine</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">HTML</span> <span class="o">+=</span> <span class="s">"&lt;br/&gt;</span><span class="se">\n</span><span class="s">"</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">AddText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextMaker is Director</span>
+<span class="k">type</span> <span class="n">TextMaker</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//MakeText fills the text</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">tm</span> <span class="n">TextMaker</span><span class="p">)</span> <span class="n">MakeText</span><span class="p">(</span><span class="n">textBuilder</span> <span class="n">TextWorker</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">textBuilder</span><span class="o">.</span><span class="n">AddText</span><span class="p">(</span><span class="s">"line 1"</span><span class="p">)</span>
+    <span class="n">textBuilder</span><span class="o">.</span><span class="n">AddNewLine</span><span class="p">(</span><span class="s">"line 2"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">textMaker</span> <span class="o">:=</span> <span class="n">TextMaker</span><span class="p">{}</span>
+
+<span class="n">textBuilder</span> <span class="o">:=</span> <span class="n">TextBuilder</span><span class="p">{}</span>
+<span class="n">textMaker</span><span class="o">.</span><span class="n">MakeText</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">textBuilder</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">:=</span> <span class="n">textBuilder</span><span class="o">.</span><span class="n">Text</span>
+<span class="c">//text: line 1</span>
+<span class="c">//      line 2</span>
+
+<span class="n">htmlBuilder</span> <span class="o">:=</span> <span class="n">HTMLBuilder</span><span class="p">{}</span>
+<span class="n">textMaker</span><span class="o">.</span><span class="n">MakeText</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">htmlBuilder</span><span class="p">)</span>
+<span class="n">html</span> <span class="o">:=</span> <span class="n">htmlBuilder</span><span class="o">.</span><span class="n">HTML</span>
+<span class="c">//html: &lt;span&gt;line 1&lt;/span&gt;&lt;br/&gt;</span>
+<span class="c">//      &lt;span&gt;line 2&lt;/span&gt;</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-factory-method">Design Pattern Factory Method</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19103.png" alt="Design Pattern Factory Method" />
+<em>Design Pattern Factory Method</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Employee is Product</span>
+<span class="k">type</span> <span class="n">Employee</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Test</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Booker is ConcreteProduct</span>
+<span class="k">type</span> <span class="n">Booker</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//Test is Employee method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">Booker</span><span class="p">)</span> <span class="n">Test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Booker"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Manager is ConcreteProduct</span>
+<span class="k">type</span> <span class="n">Manager</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//Test is Manager method</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">Manager</span><span class="p">)</span> <span class="n">Test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Manager"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//BookerCreator is ConcreteCreator</span>
+<span class="k">type</span> <span class="n">BookerCreator</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//CreateEmployee creates an Booker</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">BookerCreator</span><span class="p">)</span> <span class="n">CreateEmployee</span><span class="p">()</span> <span class="n">Employee</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Booker</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c">//ManagerCreator is ConcreteCreator</span>
+<span class="k">type</span> <span class="n">ManagerCreator</span> <span class="k">struct</span> <span class="p">{}</span>
+
+<span class="c">//CreateEmployee creates an Manager</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">ManagerCreator</span><span class="p">)</span> <span class="n">CreateEmployee</span><span class="p">()</span> <span class="n">Employee</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Manager</span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">booker</span> <span class="o">:=</span> <span class="n">BookerCreator</span><span class="p">{}</span><span class="o">.</span><span class="n">CreateEmployee</span><span class="p">()</span>
+<span class="n">booker</span><span class="o">.</span><span class="n">Test</span><span class="p">()</span>
+<span class="c">//printed: Booker</span>
+
+<span class="n">manager</span> <span class="o">:=</span> <span class="n">ManagerCreator</span><span class="p">{}</span><span class="o">.</span><span class="n">CreateEmployee</span><span class="p">()</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">Test</span><span class="p">()</span>
+<span class="c">//printed: Manager</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-prototype">Design Pattern Prototype</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19104.png" alt="Design Pattern Prototype" />
+<em>Design Pattern Prototype</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Shape is Prototype</span>
+<span class="k">type</span> <span class="n">Shape</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Clone</span><span class="p">()</span> <span class="n">Shape</span>
+<span class="p">}</span>
+
+<span class="c">//Square is ConcretePrototype</span>
+<span class="k">type</span> <span class="n">Square</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">LineCount</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//Clone creates a copy of the square</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">Square</span><span class="p">)</span> <span class="n">Clone</span><span class="p">()</span> <span class="n">Shape</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Square</span><span class="p">{</span><span class="n">s</span><span class="o">.</span><span class="n">LineCount</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+
+<span class="c">//ShapeMaker contains a Shape</span>
+<span class="k">type</span> <span class="n">ShapeMaker</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Shape</span> <span class="n">Shape</span>
+<span class="p">}</span>
+
+<span class="c">//MakeShape creates a copy of the Shape</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">sm</span> <span class="n">ShapeMaker</span><span class="p">)</span> <span class="n">MakeShape</span><span class="p">()</span> <span class="n">Shape</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">sm</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">Clone</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">square</span> <span class="o">:=</span> <span class="n">Square</span><span class="p">{</span><span class="m">4</span><span class="p">}</span>
+<span class="n">maker</span> <span class="o">:=</span> <span class="n">ShapeMaker</span><span class="p">{</span><span class="n">square</span><span class="p">}</span>
+
+<span class="n">square1</span> <span class="o">:=</span> <span class="n">maker</span><span class="o">.</span><span class="n">MakeShape</span><span class="p">()</span>
+<span class="n">square2</span> <span class="o">:=</span> <span class="n">maker</span><span class="o">.</span><span class="n">MakeShape</span><span class="p">()</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">square1</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">square2</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-singleton">Design Pattern Singleton</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19105.png" alt="Design Pattern Singleton" />
+<em>Design Pattern Singleton</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="k">package</span> <span class="n">settings</span>
+
+<span class="c">//Settings is simple struct</span>
+<span class="k">type</span> <span class="n">Settings</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Port</span> <span class="kt">int</span>
+    <span class="n">Host</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="n">instance</span> <span class="o">*</span><span class="n">Settings</span>
+
+<span class="c">//GetInstance returns a single instance of the settings</span>
+<span class="k">func</span> <span class="n">GetInstance</span><span class="p">()</span> <span class="o">*</span><span class="n">Settings</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">instance</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Settings</span><span class="p">{}</span> <span class="c">// &lt;--- NOT THREAD SAFE</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">instance</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="n">Settings</span> <span class="s">"../CreationalPatterns/Singleton"</span>
+<span class="p">)</span>
+
+<span class="n">settings</span> <span class="o">:=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">GetInstance</span><span class="p">()</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">Host</span> <span class="o">=</span> <span class="s">"192.168.100.1"</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">Port</span> <span class="o">=</span> <span class="m">33</span>
+
+<span class="n">settings1</span> <span class="o">:=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">GetInstance</span><span class="p">()</span>
+<span class="c">//settings1.Port is 33</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h1 id="structural-patterns">Structural Patterns</h1>
 <hr />
