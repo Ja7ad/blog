@@ -588,7 +588,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="209 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="435 words">2 min</span>
 
 
           <!-- page views -->
@@ -744,6 +744,140 @@
 <span class="c">//printed: money from the client</span>
 </pre></td></tr></tbody></table></code></div></div>
 
+<h2 id="design-pattern-interpreter">Design Pattern Interpreter</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19303.png" alt="Design Pattern Interpreter" />
+<em>Design Pattern Interpreter</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Expression is AbstractExpression</span>
+<span class="k">type</span> <span class="n">Expression</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Interpret</span><span class="p">(</span><span class="n">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span>
+<span class="p">}</span>
+
+<span class="c">//DivExpression is TerminalExpression</span>
+<span class="k">type</span> <span class="n">DivExpression</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">divider</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//Interpret func calculates expression</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">DivExpression</span><span class="p">)</span> <span class="n">Interpret</span><span class="p">(</span><span class="n">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">%</span><span class="n">e</span><span class="o">.</span><span class="n">divider</span> <span class="o">==</span> <span class="m">0</span>
+<span class="p">}</span>
+
+<span class="c">//OrExpression is NonterminalExpression</span>
+<span class="k">type</span> <span class="n">OrExpression</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">exp1</span> <span class="n">Expression</span>
+    <span class="n">exp2</span> <span class="n">Expression</span>
+<span class="p">}</span>
+
+<span class="c">//Interpret func calculates expression</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">OrExpression</span><span class="p">)</span> <span class="n">Interpret</span><span class="p">(</span><span class="n">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">exp1</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">||</span> <span class="n">e</span><span class="o">.</span><span class="n">exp2</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//AndExpression is NonterminalExpression</span>
+<span class="k">type</span> <span class="n">AndExpression</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">exp1</span> <span class="n">Expression</span>
+    <span class="n">exp2</span> <span class="n">Expression</span>
+<span class="p">}</span>
+
+<span class="c">//Interpret func calculates expression</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">AndExpression</span><span class="p">)</span> <span class="n">Interpret</span><span class="p">(</span><span class="n">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">exp1</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">e</span><span class="o">.</span><span class="n">exp2</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">divExp5</span> <span class="o">:=</span> <span class="n">DivExpression</span><span class="p">{</span><span class="m">5</span><span class="p">}</span>
+<span class="n">divExp7</span> <span class="o">:=</span> <span class="n">DivExpression</span><span class="p">{</span><span class="m">7</span><span class="p">}</span>
+<span class="n">orExp</span> <span class="o">:=</span> <span class="n">OrExpression</span><span class="p">{</span>
+    <span class="n">divExp5</span><span class="p">,</span> <span class="n">divExp7</span><span class="p">}</span>
+<span class="n">andExp</span> <span class="o">:=</span> <span class="n">AndExpression</span><span class="p">{</span>
+    <span class="n">divExp5</span><span class="p">,</span> <span class="n">divExp7</span><span class="p">}</span>
+
+<span class="c">//21 is divided by 7 or 5?</span>
+<span class="n">result1</span> <span class="o">:=</span> <span class="n">orExp</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="m">21</span><span class="p">)</span>
+<span class="c">//result1 is true</span>
+
+<span class="c">//21 is divided by 7 and 5?</span>
+<span class="n">result2</span> <span class="o">:=</span> <span class="n">andExp</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="m">21</span><span class="p">)</span>
+<span class="c">//result2 is false</span>
+
+<span class="c">//35 is divided by 7 and 5?</span>
+<span class="n">result3</span> <span class="o">:=</span> <span class="n">andExp</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="m">35</span><span class="p">)</span>
+<span class="c">//result3 is true</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result3</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
