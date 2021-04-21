@@ -4,7 +4,7 @@
   <id>https://blog.javad.tech/</id>
   <title>Javad Rajabzade</title>
   <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
-  <updated>2021-04-21T16:05:34+04:30</updated>
+  <updated>2021-04-21T16:09:11+04:30</updated>
   <author>
     <name>javad Rajabzade</name>
     <uri>https://blog.javad.tech/</uri>
@@ -58,8 +58,8 @@ This document is a reference for the Go community that aims to help developers w
 
   
   <entry>
-    <title>Design Patterns</title>
-    <link href="https://blog.javad.tech/posts/design-patterns-golang/" rel="alternate" type="text/html" title="Design Patterns" />
+    <title>Golang - Design Patterns Code</title>
+    <link href="https://blog.javad.tech/posts/design-patterns-golang/" rel="alternate" type="text/html" title="Golang - Design Patterns Code" />
     <published>2021-04-21T12:03:00+04:30</published>
   
     <updated>2021-04-21T12:03:00+04:30</updated>
