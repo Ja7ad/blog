@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "How to Pervent Leak Privacy Information?",
+    "url": "/posts/how-prevent-leak-privacy-information/",
+    "categories": "Tips, Privacy",
+    "tags": "privacy, leak, floc, tips",
+    "date": "2021-04-21 16:43:23 +0430",
+    
+
+
+
+
+
+    "snippet": "Tip and tricks for Prevent leak your privacy in internet (prevent google tracking) easyway step by step.How to Improve privacy in web?      Install Firefox Browser    Download Extensions :          Adguard adblocker      Chameleon            Import Settings file adguard.json and chameleon.json fo..."
+  },
+  
+  {
     "title": "Clean Go Code",
     "url": "/posts/golang-clean-code/",
     "categories": "Golang, Tips",
