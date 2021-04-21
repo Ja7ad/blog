@@ -621,7 +621,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3055 words">16 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4362 words">24 min</span>
 
 
           <!-- page views -->
@@ -2506,6 +2506,898 @@
 
 <h1 id="structural-patterns">Structural Patterns</h1>
 <hr />
+
+<h2 id="design-pattern-adapter-composition">Design Pattern Adapter (composition)</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19201.png" alt="Design Pattern Adapter" />
+<em>Design Pattern Adapter</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"strings"</span>
+<span class="p">)</span>
+
+<span class="c">//StringList is Adaptee</span>
+<span class="k">type</span> <span class="n">StringList</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">rows</span> <span class="p">[]</span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">sl</span> <span class="n">StringList</span><span class="p">)</span> <span class="n">getString</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">sl</span> <span class="o">*</span><span class="n">StringList</span><span class="p">)</span> <span class="n">add</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextAdapter is Adapter</span>
+<span class="k">type</span> <span class="n">TextAdapter</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">RowList</span> <span class="n">StringList</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">ta</span> <span class="n">TextAdapter</span><span class="p">)</span> <span class="n">getText</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ta</span><span class="o">.</span><span class="n">RowList</span><span class="o">.</span><span class="n">getString</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">getTextAdapter</span><span class="p">()</span> <span class="n">TextAdapter</span> <span class="p">{</span>
+    <span class="n">rowList</span> <span class="o">:=</span> <span class="n">StringList</span><span class="p">{}</span>
+    <span class="n">rowList</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">"line 1"</span><span class="p">)</span>
+    <span class="n">rowList</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">"line 2"</span><span class="p">)</span>
+    <span class="n">adapter</span> <span class="o">:=</span> <span class="n">TextAdapter</span><span class="p">{</span><span class="n">rowList</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">adapter</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">adapter</span> <span class="o">:=</span> <span class="n">getTextAdapter</span><span class="p">()</span>
+<span class="n">text</span> <span class="o">:=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+<span class="c">//text: line 1</span>
+<span class="c">//      line 2</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-adapter-inheritance">Design Pattern Adapter (inheritance)</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19202.png" alt="Design Pattern Adapter" />
+<em>Design Pattern Adapter</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"strings"</span>
+<span class="p">)</span>
+
+<span class="c">//StringList is Adaptee</span>
+<span class="k">type</span> <span class="n">StringList</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">rows</span> <span class="p">[]</span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">sl</span> <span class="n">StringList</span><span class="p">)</span> <span class="n">getString</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">sl</span> <span class="o">*</span><span class="n">StringList</span><span class="p">)</span> <span class="n">add</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sl</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextAdapter is Adapter</span>
+<span class="k">type</span> <span class="n">TextAdapter</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">StringList</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">ta</span> <span class="n">TextAdapter</span><span class="p">)</span> <span class="n">getText</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ta</span><span class="o">.</span><span class="n">getString</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">getTextAdapter</span><span class="p">()</span> <span class="n">TextAdapter</span> <span class="p">{</span>
+    <span class="n">adapter</span> <span class="o">:=</span> <span class="n">TextAdapter</span><span class="p">{}</span>
+    <span class="n">adapter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">"line 1"</span><span class="p">)</span>
+    <span class="n">adapter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">"line 2"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">adapter</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">adapter</span> <span class="o">:=</span> <span class="n">getTextAdapter</span><span class="p">()</span>
+<span class="n">text</span> <span class="o">:=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+<span class="c">//text: line 1</span>
+<span class="c">//      line 2</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-bridge">Design Pattern Bridge</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19203.png" alt="Design Pattern Bridge" />
+<em>Design Pattern Bridge</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"strings"</span>
+<span class="p">)</span>
+
+<span class="c">//AText is Abstraction</span>
+<span class="k">type</span> <span class="n">AText</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">getText</span><span class="p">()</span> <span class="kt">string</span>
+    <span class="n">addLine</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//ITextImp is abstract Implementator</span>
+<span class="k">type</span> <span class="n">ITextImp</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">getString</span><span class="p">()</span> <span class="kt">string</span>
+    <span class="n">appendLine</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextImp is Implementator</span>
+<span class="k">type</span> <span class="n">TextImp</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">rows</span> <span class="p">[]</span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">ti</span> <span class="n">TextImp</span><span class="p">)</span> <span class="n">getString</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">ti</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextMaker RefinedAbstraction</span>
+<span class="k">type</span> <span class="n">TextMaker</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">textImp</span> <span class="n">ITextImp</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">tm</span> <span class="n">TextMaker</span><span class="p">)</span> <span class="n">getText</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">tm</span><span class="o">.</span><span class="n">textImp</span><span class="o">.</span><span class="n">getString</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">tm</span> <span class="n">TextMaker</span><span class="p">)</span> <span class="n">addLine</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tm</span><span class="o">.</span><span class="n">textImp</span><span class="o">.</span><span class="n">appendLine</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextBuilder is ConcreteImplementator1</span>
+<span class="k">type</span> <span class="n">TextBuilder</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">TextImp</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">tb</span> <span class="o">*</span><span class="n">TextBuilder</span><span class="p">)</span> <span class="n">appendLine</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//HTMLBuilder is ConcreteImplementator2</span>
+<span class="k">type</span> <span class="n">HTMLBuilder</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">TextImp</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">hb</span> <span class="o">*</span><span class="n">HTMLBuilder</span><span class="p">)</span> <span class="n">appendLine</span><span class="p">(</span><span class="n">value</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">hb</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">hb</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span>
+        <span class="s">"&lt;span&gt;"</span><span class="o">+</span><span class="n">value</span><span class="o">+</span><span class="s">"&lt;/span&gt;&lt;br/&gt;"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="n">textImp</span> <span class="n">ITextImp</span><span class="p">)</span> <span class="n">AText</span> <span class="p">{</span>
+    <span class="n">textMaker</span> <span class="o">:=</span> <span class="n">TextMaker</span><span class="p">{</span><span class="n">textImp</span><span class="p">}</span>
+    <span class="n">textMaker</span><span class="o">.</span><span class="n">addLine</span><span class="p">(</span><span class="s">"line 1"</span><span class="p">)</span>
+    <span class="n">textMaker</span><span class="o">.</span><span class="n">addLine</span><span class="p">(</span><span class="s">"line 2"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">textMaker</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">textMaker</span> <span class="o">:=</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">TextBuilder</span><span class="p">{})</span>
+<span class="n">text</span> <span class="o">:=</span> <span class="n">textMaker</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+<span class="c">//test: line 1</span>
+<span class="c">//      line 2</span>
+
+<span class="n">htmlMaker</span> <span class="o">:=</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">HTMLBuilder</span><span class="p">{})</span>
+<span class="n">html</span> <span class="o">:=</span> <span class="n">htmlMaker</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+<span class="c">//html: &lt;span&gt;line 1&lt;/span&gt;&lt;br/&gt;</span>
+<span class="c">//      &lt;span&gt;line 2&lt;/span&gt;&lt;br/&gt;</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-composite">Design Pattern Composite</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19204.png" alt="Design Pattern Composite" />
+<em>Design Pattern Composite</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Graphic is Component</span>
+<span class="k">type</span> <span class="n">Graphic</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Draw</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Сircle is Leaf</span>
+<span class="k">type</span> <span class="n">Сircle</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//Draw is Operation</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">Сircle</span><span class="p">)</span> <span class="n">Draw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Draw circle"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Square is Leaf</span>
+<span class="k">type</span> <span class="n">Square</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//Draw is Operation</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">Square</span><span class="p">)</span> <span class="n">Draw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Draw square"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Image is Composite</span>
+<span class="k">type</span> <span class="n">Image</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">graphics</span> <span class="p">[]</span><span class="n">Graphic</span>
+<span class="p">}</span>
+
+<span class="c">//Add Adds a Leaf to the Composite.</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span><span class="n">Image</span><span class="p">)</span> <span class="n">Add</span><span class="p">(</span><span class="n">graphic</span> <span class="n">Graphic</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">i</span><span class="o">.</span><span class="n">graphics</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">graphics</span><span class="p">,</span> <span class="n">graphic</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Draw is Operation</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">i</span> <span class="n">Image</span><span class="p">)</span> <span class="n">Draw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Draw image"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">g</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">i</span><span class="o">.</span><span class="n">graphics</span> <span class="p">{</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">Draw</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">image</span> <span class="o">:=</span> <span class="n">Image</span><span class="p">{}</span>
+<span class="n">image</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Сircle</span><span class="p">{})</span>
+<span class="n">image</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Square</span><span class="p">{})</span>
+<span class="n">picture</span> <span class="o">:=</span> <span class="n">Image</span><span class="p">{}</span>
+<span class="n">picture</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">picture</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Image</span><span class="p">{})</span>
+<span class="n">picture</span><span class="o">.</span><span class="n">Draw</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-decorator">Design Pattern Decorator</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19205.png" alt="Design Pattern Decorator" />
+<em>Design Pattern Decorator</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Shape is Component</span>
+<span class="k">type</span> <span class="n">Shape</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">ShowInfo</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Square is ConcreteComponent</span>
+<span class="k">type</span> <span class="n">Square</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//ShowInfo is Operation()</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">Square</span><span class="p">)</span> <span class="n">ShowInfo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"square"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//ShapeDecorator is Decorator</span>
+<span class="k">type</span> <span class="n">ShapeDecorator</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Shape</span> <span class="n">Shape</span>
+<span class="p">}</span>
+
+<span class="c">//ShowInfo is Operation()</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">sd</span> <span class="n">ShapeDecorator</span><span class="p">)</span> <span class="n">ShowInfo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">ShowInfo</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//ColorShape is ConcreteDecorator</span>
+<span class="k">type</span> <span class="n">ColorShape</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">ShapeDecorator</span>
+    <span class="n">color</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">//ShowInfo is Operation()</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">cs</span> <span class="n">ColorShape</span><span class="p">)</span> <span class="n">ShowInfo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">color</span> <span class="o">+</span> <span class="s">" "</span><span class="p">)</span>
+    <span class="n">cs</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">ShowInfo</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//ShadowShape is ConcreteDecorator</span>
+<span class="k">type</span> <span class="n">ShadowShape</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">ShapeDecorator</span>
+<span class="p">}</span>
+
+<span class="c">//ShowInfo is Operation()</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">ss</span> <span class="n">ShadowShape</span><span class="p">)</span> <span class="n">ShowInfo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ss</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">ShowInfo</span><span class="p">()</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">" with shadow"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">square</span> <span class="o">:=</span> <span class="n">Square</span><span class="p">{}</span>
+<span class="n">square</span><span class="o">.</span><span class="n">ShowInfo</span><span class="p">()</span>
+<span class="c">//printed: square</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">()</span>
+
+<span class="n">colorShape</span> <span class="o">:=</span> <span class="n">ColorShape</span><span class="p">{</span>
+    <span class="n">ShapeDecorator</span><span class="p">{</span><span class="n">square</span><span class="p">},</span> <span class="s">"red"</span><span class="p">}</span>
+<span class="n">colorShape</span><span class="o">.</span><span class="n">ShowInfo</span><span class="p">()</span>
+<span class="c">//printed: red square</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">()</span>
+
+<span class="n">shadowShape</span> <span class="o">:=</span> <span class="n">ShadowShape</span><span class="p">{</span>
+<span class="n">ShapeDecorator</span><span class="p">{</span><span class="n">colorShape</span><span class="p">}}</span>
+<span class="n">shadowShape</span><span class="o">.</span><span class="n">ShowInfo</span><span class="p">()</span>
+<span class="c">//printed: red square with shadow</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-facade">Design Pattern Facade</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19206.png" alt="Design Pattern Facade" />
+<em>Design Pattern Facade</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Complex parts</span>
+<span class="k">type</span> <span class="n">kettle</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">k</span> <span class="n">kettle</span><span class="p">)</span> <span class="n">TurnOff</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Kettle turn off"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">type</span> <span class="n">toaster</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">t</span> <span class="n">toaster</span><span class="p">)</span> <span class="n">TurnOff</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Toaster turn off"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">type</span> <span class="n">refrigerator</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">r</span> <span class="n">refrigerator</span><span class="p">)</span> <span class="n">TurnOff</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Refrigerator turn off"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Facade</span>
+<span class="k">type</span> <span class="n">kitchen</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">kettle</span>       <span class="n">kettle</span>
+    <span class="n">toaster</span>      <span class="n">toaster</span>
+    <span class="n">refrigerator</span> <span class="n">refrigerator</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">k</span> <span class="n">kitchen</span><span class="p">)</span> <span class="n">Off</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">k</span><span class="o">.</span><span class="n">kettle</span><span class="o">.</span><span class="n">TurnOff</span><span class="p">()</span>
+    <span class="n">k</span><span class="o">.</span><span class="n">toaster</span><span class="o">.</span><span class="n">TurnOff</span><span class="p">()</span>
+    <span class="n">k</span><span class="o">.</span><span class="n">refrigerator</span><span class="o">.</span><span class="n">TurnOff</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">kitchen</span> <span class="o">:=</span> <span class="n">kitchen</span><span class="p">{</span>
+    <span class="n">kettle</span><span class="p">{},</span>
+    <span class="n">toaster</span><span class="p">{},</span>
+    <span class="n">refrigerator</span><span class="p">{},</span>
+<span class="p">}</span>
+
+<span class="n">kitchen</span><span class="o">.</span><span class="n">Off</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-flyweight">Design Pattern Flyweight</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19207.png" alt="Design Pattern Flyweight" />
+<em>Design Pattern Flyweight</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Span is Flyweight</span>
+<span class="k">type</span> <span class="n">Span</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">PrintSpan</span><span class="p">(</span><span class="n">style</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Char is ConcreteFlyweight</span>
+<span class="k">type</span> <span class="n">Char</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">C</span> <span class="kt">rune</span>
+<span class="p">}</span>
+
+<span class="c">//PrintSpan is Operation(extrinsicState)</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">Char</span><span class="p">)</span> <span class="n">PrintSpan</span><span class="p">(</span><span class="n">style</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"&lt;span style=</span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span>
+        <span class="n">style</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">&gt;"</span> <span class="o">+</span> <span class="kt">string</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="o">+</span> <span class="s">"&lt;/span&gt;"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//CharFactory is FlyweightFactory</span>
+<span class="k">type</span> <span class="n">CharFactory</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">chars</span> <span class="k">map</span><span class="p">[</span><span class="kt">rune</span><span class="p">]</span><span class="n">Char</span>
+<span class="p">}</span>
+
+<span class="c">//GetChar is GetFlyweight(key)</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">cf</span> <span class="o">*</span><span class="n">CharFactory</span><span class="p">)</span> <span class="n">GetChar</span><span class="p">(</span><span class="n">c</span> <span class="kt">rune</span><span class="p">)</span> <span class="n">Span</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">value</span><span class="p">,</span> <span class="n">exists</span> <span class="o">:=</span> <span class="n">cf</span><span class="o">.</span><span class="n">chars</span><span class="p">[</span><span class="n">c</span><span class="p">];</span> <span class="n">exists</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="p">}</span>
+    <span class="n">char</span> <span class="o">:=</span> <span class="n">Char</span><span class="p">{</span><span class="n">c</span><span class="p">}</span>
+    <span class="n">cf</span><span class="o">.</span><span class="n">chars</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">char</span>
+    <span class="k">return</span> <span class="n">char</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">factory</span> <span class="o">:=</span> <span class="n">CharFactory</span><span class="p">{</span><span class="k">map</span><span class="p">[</span><span class="kt">rune</span><span class="p">]</span><span class="n">Char</span><span class="p">{}}</span>
+<span class="n">charA</span> <span class="o">:=</span> <span class="n">factory</span><span class="o">.</span><span class="n">GetChar</span><span class="p">(</span><span class="sc">'A'</span><span class="p">)</span>
+<span class="n">charA</span><span class="o">.</span><span class="n">PrintSpan</span><span class="p">(</span><span class="s">"font-size: 12"</span><span class="p">)</span>
+
+<span class="n">charB</span> <span class="o">:=</span> <span class="n">factory</span><span class="o">.</span><span class="n">GetChar</span><span class="p">(</span><span class="sc">'B'</span><span class="p">)</span>
+<span class="n">charB</span><span class="o">.</span><span class="n">PrintSpan</span><span class="p">(</span><span class="s">"font-size: 12"</span><span class="p">)</span>
+
+<span class="n">charA1</span> <span class="o">:=</span> <span class="n">factory</span><span class="o">.</span><span class="n">GetChar</span><span class="p">(</span><span class="sc">'A'</span><span class="p">)</span>
+<span class="n">charA1</span><span class="o">.</span><span class="n">PrintSpan</span><span class="p">(</span><span class="s">"font-size: 12"</span><span class="p">)</span>
+
+<span class="n">equal</span> <span class="o">:=</span> <span class="n">charA</span> <span class="o">==</span> <span class="n">charA1</span>
+<span class="c">//equal is true</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">equal</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-proxy">Design Pattern Proxy</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19208.png" alt="Design Pattern Proxy" />
+<em>Design Pattern Proxy</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Graphic is Subject</span>
+<span class="k">type</span> <span class="n">Graphic</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Draw</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Image is RealSubjec</span>
+<span class="k">type</span> <span class="n">Image</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">FileName</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">//Draw is Request()</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">im</span> <span class="n">Image</span><span class="p">)</span> <span class="n">Draw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"draw "</span> <span class="o">+</span> <span class="n">im</span><span class="o">.</span><span class="n">FileName</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//ImageProxy is Proxy</span>
+<span class="k">type</span> <span class="n">ImageProxy</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">FileName</span> <span class="kt">string</span>
+    <span class="n">_image</span>   <span class="o">*</span><span class="n">Image</span>
+<span class="p">}</span>
+
+<span class="c">//GetImage creates an Subject</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">ip</span> <span class="n">ImageProxy</span><span class="p">)</span> <span class="n">GetImage</span><span class="p">()</span> <span class="o">*</span><span class="n">Image</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">ip</span><span class="o">.</span><span class="n">_image</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="n">ip</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Image</span><span class="p">{</span><span class="n">ip</span><span class="o">.</span><span class="n">FileName</span><span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ip</span><span class="o">.</span><span class="n">_image</span>
+<span class="p">}</span>
+
+<span class="c">//Draw is Request()</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">ip</span> <span class="n">ImageProxy</span><span class="p">)</span> <span class="n">Draw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ip</span><span class="o">.</span><span class="n">GetImage</span><span class="p">()</span><span class="o">.</span><span class="n">Draw</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">proxy</span> <span class="o">:=</span> <span class="n">ImageProxy</span><span class="p">{</span><span class="n">FileName</span><span class="o">:</span> <span class="s">"1.png"</span><span class="p">}</span>
+<span class="c">//operation without creating a RealSubject</span>
+<span class="n">fileName</span> <span class="o">:=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">FileName</span>
+<span class="c">//forwarded to the RealSubject</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">Draw</span><span class="p">()</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
