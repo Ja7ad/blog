@@ -1,0 +1,124 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blog.javad.tech/</id>
+  <title>Javad Rajabzade</title>
+  <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
+  <updated>2021-04-21T15:04:04+04:30</updated>
+  <author>
+    <name>javad Rajabzade</name>
+    <uri>https://blog.javad.tech/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="https://blog.javad.tech/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="en-US"
+    href="https://blog.javad.tech/"/>
+  <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
+  <rights> © 2021 javad Rajabzade </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Clean Go Code</title>
+    <link href="https://blog.javad.tech/posts/golang-clean-code/" rel="alternate" type="text/html" title="Clean Go Code" />
+    <published>2021-04-21T13:03:00+04:30</published>
+  
+    <updated>2021-04-21T13:03:00+04:30</updated>
+  
+    <id>https://blog.javad.tech/posts/golang-clean-code/</id>
+    <content src="https://blog.javad.tech/posts/golang-clean-code/" />
+    <author>
+      <name>javad Rajabzade</name>
+    </author>
+
+  
+    
+    <category term="Golang" />
+    
+    <category term="Tips" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Preface: Why Write Clean Code?
+
+This document is a reference for the Go community that aims to help developers write cleaner code. Whether you’re working on a personal project or as part of a larger team, writing clean code is an important skill to have. Establishing good paradigms and consistent, accessible standards for writing clean code can help prevent developers from wasting many meaningl...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Golang Algorithms Code</title>
+    <link href="https://blog.javad.tech/posts/golang-algorithms/" rel="alternate" type="text/html" title="Golang Algorithms Code" />
+    <published>2021-04-21T11:03:00+04:30</published>
+  
+    <updated>2021-04-21T11:03:00+04:30</updated>
+  
+    <id>https://blog.javad.tech/posts/golang-algorithms/</id>
+    <content src="https://blog.javad.tech/posts/golang-algorithms/" />
+    <author>
+      <name>javad Rajabzade</name>
+    </author>
+
+  
+    
+    <category term="Golang" />
+    
+    <category term="Codes" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Search Algorithms
+
+
+Binary search
+
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+//works when the array is sorted
+func binarySearch(arr []int, x int) int {
+    i := 0
+    j := len(arr)
+    for i != j {
+        var m = (i + j) / 2
+        if x == arr[m] {
+            return m
+        }
+        if x &amp;lt; arr[m] {
+            j = m
+        } else {
+            i = m + 1
+        }
+    }
+    return...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+

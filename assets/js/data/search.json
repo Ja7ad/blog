@@ -1,0 +1,34 @@
+[
+  
+  {
+    "title": "Clean Go Code",
+    "url": "/posts/golang-clean-code/",
+    "categories": "Golang, Tips",
+    "tags": "golang, go, algorithms, tips",
+    "date": "2021-04-21 13:03:00 +0430",
+    
+
+
+
+
+
+    "snippet": "Preface: Why Write Clean Code?This document is a reference for the Go community that aims to help developers write cleaner code. Whether you’re working on a personal project or as part of a larger team, writing clean code is an important skill to have. Establishing good paradigms and consistent, ..."
+  },
+  
+  {
+    "title": "Golang Algorithms Code",
+    "url": "/posts/golang-algorithms/",
+    "categories": "Golang, Codes",
+    "tags": "golang, go, algorithms, codes",
+    "date": "2021-04-21 11:03:00 +0430",
+    
+
+
+
+
+
+    "snippet": "Search AlgorithmsBinary searchpackage mainimport (    &quot;fmt&quot;    &quot;time&quot;)//works when the array is sortedfunc binarySearch(arr []int, x int) int {    i := 0    j := len(arr)    for i != j {        var m = (i + j) / 2        if x == arr[m] {            return m        }        if ..."
+  }
+  
+]
+
