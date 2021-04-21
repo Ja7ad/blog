@@ -621,7 +621,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="439 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2078 words">11 min</span>
 
 
           <!-- page views -->
@@ -908,6 +908,1002 @@
 <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
 <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
 <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result3</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+<h2 id="design-pattern-iterator">Design Pattern Iterator</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19304.png" alt="Design Pattern Iterator" />
+<em>Design Pattern Iterator</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//IntIterator is Iterator</span>
+<span class="k">type</span> <span class="n">IntIterator</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">First</span><span class="p">()</span>
+    <span class="n">Next</span><span class="p">()</span>
+    <span class="n">IsDone</span><span class="p">()</span> <span class="kt">bool</span>
+    <span class="n">CurrentItem</span><span class="p">()</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//Numbers is ConcreteAggregate</span>
+<span class="k">type</span> <span class="n">Numbers</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Data</span> <span class="p">[]</span><span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//GetIterator return Iterator</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">n</span> <span class="n">Numbers</span><span class="p">)</span> <span class="n">GetIterator</span><span class="p">()</span> <span class="n">IntIterator</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Iterator</span><span class="p">{</span><span class="n">n</span><span class="p">,</span> <span class="m">0</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">//Iterator is ConcreteIterator</span>
+<span class="k">type</span> <span class="n">Iterator</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_numbers</span> <span class="n">Numbers</span>
+    <span class="n">_index</span>   <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//First positions the iterator to the first element</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span><span class="n">Iterator</span><span class="p">)</span> <span class="n">First</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">i</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="m">0</span>
+<span class="p">}</span>
+
+<span class="c">//Next advances the current element</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span><span class="n">Iterator</span><span class="p">)</span> <span class="n">Next</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">i</span><span class="o">.</span><span class="n">_index</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="c">//IsDone checks whether the index refers to an element withinthe List</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span><span class="n">Iterator</span><span class="p">)</span> <span class="n">IsDone</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">.</span><span class="n">_index</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">_numbers</span><span class="o">.</span><span class="n">Data</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//CurrentItem returns the item at the current index</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span><span class="n">Iterator</span><span class="p">)</span> <span class="n">CurrentItem</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">i</span><span class="o">.</span><span class="n">_numbers</span><span class="o">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">_index</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">numbers</span> <span class="o">:=</span> <span class="n">Numbers</span><span class="p">{[]</span><span class="kt">int</span><span class="p">{</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">11</span><span class="p">}}</span>
+<span class="n">iterator</span> <span class="o">:=</span> <span class="n">numbers</span><span class="o">.</span><span class="n">GetIterator</span><span class="p">()</span>
+<span class="n">sum</span> <span class="o">:=</span> <span class="m">0</span>
+<span class="k">for</span> <span class="n">iterator</span><span class="o">.</span><span class="n">First</span><span class="p">();</span> <span class="o">!</span><span class="n">iterator</span><span class="o">.</span><span class="n">IsDone</span><span class="p">();</span> <span class="n">iterator</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">CurrentItem</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="c">//sum is 28</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-mediator">Design Pattern Mediator</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19305.png" alt="Design Pattern Mediator" />
+<em>Design Pattern Mediator</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+</pre></td><td class="rouge-code"><pre><span class="c">//Mediator defines an interface for communicating with Colleague objects</span>
+<span class="k">type</span> <span class="n">Mediator</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Sync</span><span class="p">(</span><span class="n">switcher</span> <span class="o">*</span><span class="n">Switcher</span><span class="p">)</span>
+    <span class="n">Add</span><span class="p">(</span><span class="n">switcher</span> <span class="o">*</span><span class="n">Switcher</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Switcher is Colleague</span>
+<span class="k">type</span> <span class="n">Switcher</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">State</span>     <span class="kt">bool</span>
+    <span class="n">_mediator</span> <span class="n">Mediator</span>
+<span class="p">}</span>
+
+<span class="c">//NewSwitcher creates a new Switcher</span>
+<span class="k">func</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span> <span class="n">Mediator</span><span class="p">)</span> <span class="o">*</span><span class="n">Switcher</span> <span class="p">{</span>
+    <span class="n">switcher</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Switcher</span><span class="p">{</span><span class="no">false</span><span class="p">,</span> <span class="n">mediator</span><span class="p">}</span>
+    <span class="n">mediator</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">switcher</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">switcher</span>
+<span class="p">}</span>
+
+<span class="c">//Sync starts the mediator Sync function</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">Switcher</span><span class="p">)</span> <span class="n">Sync</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">_mediator</span><span class="o">.</span><span class="n">Sync</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">s</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//SyncMediator is ConcreteMediator</span>
+<span class="k">type</span> <span class="n">SyncMediator</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Switchers</span> <span class="p">[]</span><span class="o">*</span><span class="n">Switcher</span>
+<span class="p">}</span>
+
+<span class="c">//Sync synchronizes the state of all Colleague objects</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">sm</span> <span class="o">*</span><span class="n">SyncMediator</span><span class="p">)</span> <span class="n">Sync</span><span class="p">(</span><span class="n">switcher</span> <span class="o">*</span><span class="n">Switcher</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">curSwitcher</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">sm</span><span class="o">.</span><span class="n">Switchers</span> <span class="p">{</span>
+        <span class="n">curSwitcher</span><span class="o">.</span><span class="n">State</span> <span class="o">=</span> <span class="n">switcher</span><span class="o">.</span><span class="n">State</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">//Add append Colleague to the Mediator list</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">sm</span> <span class="o">*</span><span class="n">SyncMediator</span><span class="p">)</span> <span class="n">Add</span><span class="p">(</span><span class="n">switcher</span> <span class="o">*</span><span class="n">Switcher</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">Switchers</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">Switchers</span><span class="p">,</span> <span class="n">switcher</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">mediator</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">SyncMediator</span><span class="p">{[]</span><span class="o">*</span><span class="n">Switcher</span><span class="p">{}}</span>
+<span class="n">switcher1</span> <span class="o">:=</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span><span class="p">)</span>
+<span class="n">switcher2</span> <span class="o">:=</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span><span class="p">)</span>
+<span class="n">switcher3</span> <span class="o">:=</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span><span class="p">)</span>
+
+<span class="n">switcher1</span><span class="o">.</span><span class="n">State</span> <span class="o">=</span> <span class="no">true</span>
+<span class="n">state2</span> <span class="o">:=</span> <span class="n">switcher2</span><span class="o">.</span><span class="n">State</span>
+<span class="c">//state2 is false</span>
+<span class="n">state3</span> <span class="o">:=</span> <span class="n">switcher3</span><span class="o">.</span><span class="n">State</span>
+<span class="c">//state3 is false</span>
+
+<span class="n">switcher1</span><span class="o">.</span><span class="n">Sync</span><span class="p">()</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">switcher2</span><span class="o">.</span><span class="n">State</span>
+<span class="c">//state2 is true</span>
+<span class="n">state3</span> <span class="o">=</span> <span class="n">switcher3</span><span class="o">.</span><span class="n">State</span>
+<span class="c">//state3 is true</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-memento">Design Pattern Memento</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19306.png" alt="Design Pattern Memento" />
+<em>Design Pattern Memento</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+</pre></td><td class="rouge-code"><pre><span class="c">//Point is State</span>
+<span class="k">type</span> <span class="n">Point</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//Memento contains a State field</span>
+<span class="k">type</span> <span class="n">Memento</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_state</span> <span class="n">Point</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">m</span> <span class="n">Memento</span><span class="p">)</span> <span class="n">getState</span><span class="p">()</span> <span class="n">Point</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">_state</span>
+<span class="p">}</span>
+
+<span class="c">//Shape is Originator</span>
+<span class="k">type</span> <span class="n">Shape</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Position</span> <span class="n">Point</span>
+<span class="p">}</span>
+
+<span class="c">//Move Shape</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span><span class="n">Shape</span><span class="p">)</span> <span class="n">Move</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">X</span> <span class="o">+=</span> <span class="n">left</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">Y</span> <span class="o">+=</span> <span class="n">top</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span><span class="n">Shape</span><span class="p">)</span> <span class="n">getMemento</span><span class="p">()</span> <span class="n">Memento</span> <span class="p">{</span>
+    <span class="n">state</span> <span class="o">:=</span> <span class="n">Point</span><span class="p">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">Position</span><span class="o">.</span><span class="n">Y</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">Memento</span><span class="p">{</span><span class="n">state</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span><span class="n">Shape</span><span class="p">)</span> <span class="n">setMemento</span><span class="p">(</span><span class="n">memento</span> <span class="n">Memento</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">Position</span> <span class="o">=</span> <span class="n">memento</span><span class="o">.</span><span class="n">getState</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">//ShapeHelper is Caretaker</span>
+<span class="k">type</span> <span class="n">ShapeHelper</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_shape</span> <span class="o">*</span><span class="n">Shape</span>
+    <span class="n">_stack</span> <span class="p">[]</span><span class="n">Memento</span>
+<span class="p">}</span>
+
+<span class="c">//NewShapeHelper creates a new ShapeHelper</span>
+<span class="k">func</span> <span class="n">NewShapeHelper</span><span class="p">(</span><span class="n">shape</span> <span class="o">*</span><span class="n">Shape</span><span class="p">)</span> <span class="n">ShapeHelper</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ShapeHelper</span><span class="p">{</span><span class="n">shape</span><span class="p">,</span> <span class="p">[]</span><span class="n">Memento</span><span class="p">{}}</span>
+<span class="p">}</span>
+
+<span class="c">//Move Shape and save prior state</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">sh</span> <span class="o">*</span><span class="n">ShapeHelper</span><span class="p">)</span> <span class="n">Move</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sh</span><span class="o">.</span><span class="n">_stack</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span>
+        <span class="n">sh</span><span class="o">.</span><span class="n">_stack</span><span class="p">,</span> <span class="n">sh</span><span class="o">.</span><span class="n">_shape</span><span class="o">.</span><span class="n">getMemento</span><span class="p">())</span>
+    <span class="n">sh</span><span class="o">.</span><span class="n">_shape</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Undo move shape to previous position</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">sh</span> <span class="o">*</span><span class="n">ShapeHelper</span><span class="p">)</span> <span class="n">Undo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">l</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sh</span><span class="o">.</span><span class="n">_stack</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">l</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="p">{</span>
+        <span class="n">memento</span> <span class="o">:=</span> <span class="n">sh</span><span class="o">.</span><span class="n">_stack</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="m">1</span><span class="p">]</span>
+        <span class="n">sh</span><span class="o">.</span><span class="n">_stack</span> <span class="o">=</span> <span class="n">sh</span><span class="o">.</span><span class="n">_stack</span><span class="p">[</span><span class="o">:</span><span class="n">l</span><span class="o">-</span><span class="m">1</span><span class="p">]</span>
+        <span class="n">sh</span><span class="o">.</span><span class="n">_shape</span><span class="o">.</span><span class="n">setMemento</span><span class="p">(</span><span class="n">memento</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">shape</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Shape</span><span class="p">{}</span>
+<span class="n">helper</span> <span class="o">:=</span> <span class="n">NewShapeHelper</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">helper</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="c">//shape.Position is (2, 3)</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="o">-</span><span class="m">5</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+<span class="c">//shape.Position is (-3, 7)</span>
+
+<span class="n">helper</span><span class="o">.</span><span class="n">Undo</span><span class="p">()</span>
+<span class="c">//shape.Position is (2, 3)</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">Undo</span><span class="p">()</span>
+<span class="c">//shape.Position is (0, 0)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-observer">Design Pattern Observer</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19307.png" alt="Design Pattern Observer" />
+<em>Design Pattern Observer</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="k">type</span> <span class="n">observer</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">update</span><span class="p">(</span><span class="n">state</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TextObserver is ConcreteObserver</span>
+<span class="k">type</span> <span class="n">TextObserver</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_name</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">t</span> <span class="n">TextObserver</span><span class="p">)</span> <span class="n">update</span><span class="p">(</span><span class="n">state</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">_name</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">state</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TestSubject is Subject</span>
+<span class="k">type</span> <span class="n">TestSubject</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_observers</span> <span class="p">[]</span><span class="n">observer</span>
+<span class="p">}</span>
+
+<span class="c">//Attach adds an observer</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">ts</span> <span class="o">*</span><span class="n">TestSubject</span><span class="p">)</span> <span class="n">Attach</span><span class="p">(</span><span class="n">observer</span> <span class="n">observer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">_observers</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">_observers</span><span class="p">,</span> <span class="n">observer</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Detach removes an observer</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">ts</span> <span class="o">*</span><span class="n">TestSubject</span><span class="p">)</span> <span class="n">Detach</span><span class="p">(</span><span class="n">observer</span> <span class="n">observer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">index</span> <span class="o">:=</span> <span class="m">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">ts</span><span class="o">.</span><span class="n">_observers</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">ts</span><span class="o">.</span><span class="n">_observers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">observer</span> <span class="p">{</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">_observers</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">_observers</span><span class="p">[</span><span class="m">0</span><span class="o">:</span><span class="n">index</span><span class="p">],</span> <span class="n">ts</span><span class="o">.</span><span class="n">_observers</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="m">1</span><span class="o">:</span><span class="p">]</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">ts</span> <span class="n">TestSubject</span><span class="p">)</span> <span class="n">notify</span><span class="p">(</span><span class="n">state</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">observer</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">ts</span><span class="o">.</span><span class="n">_observers</span> <span class="p">{</span>
+        <span class="n">observer</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">//TextEdit is ConcreteSubject</span>
+<span class="k">type</span> <span class="n">TextEdit</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">TestSubject</span>
+    <span class="n">Text</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">//SetText changes the text and informs observers</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">te</span> <span class="n">TextEdit</span><span class="p">)</span> <span class="n">SetText</span><span class="p">(</span><span class="n">text</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">te</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">text</span>
+    <span class="n">te</span><span class="o">.</span><span class="n">TestSubject</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">observer1</span> <span class="o">:=</span> <span class="n">TextObserver</span><span class="p">{</span><span class="s">"IObserver #1"</span><span class="p">}</span>
+<span class="n">observer2</span> <span class="o">:=</span> <span class="n">TextObserver</span><span class="p">{</span><span class="s">"IObserver #2"</span><span class="p">}</span>
+
+<span class="n">textEdit</span> <span class="o">:=</span> <span class="n">TextEdit</span><span class="p">{}</span>
+<span class="n">textEdit</span><span class="o">.</span><span class="n">Attach</span><span class="p">(</span><span class="n">observer1</span><span class="p">)</span>
+<span class="n">textEdit</span><span class="o">.</span><span class="n">Attach</span><span class="p">(</span><span class="n">observer2</span><span class="p">)</span>
+
+<span class="n">textEdit</span><span class="o">.</span><span class="n">SetText</span><span class="p">(</span><span class="s">"test text"</span><span class="p">)</span>
+<span class="c">//printed:</span>
+<span class="c">//IObserver #1: test text</span>
+<span class="c">//IObserver #2: test text</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-state">Design Pattern State</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19308.png" alt="Design Pattern State" />
+<em>Design Pattern State</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="k">type</span> <span class="n">state</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span>
+    <span class="nb">close</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//CloseState is ConcreteState</span>
+<span class="k">type</span> <span class="n">CloseState</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">cs</span> <span class="n">CloseState</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"open the connection"</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">setState</span><span class="p">(</span><span class="n">OpenState</span><span class="p">{})</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">cs</span> <span class="n">CloseState</span><span class="p">)</span> <span class="nb">close</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"connection is already closed"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//OpenState is ConcreteState</span>
+<span class="k">type</span> <span class="n">OpenState</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">os</span> <span class="n">OpenState</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"connection is already open"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">os</span> <span class="n">OpenState</span><span class="p">)</span> <span class="nb">close</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"close the connection"</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">setState</span><span class="p">(</span><span class="n">CloseState</span><span class="p">{})</span>
+<span class="p">}</span>
+
+<span class="c">//Connection is Context</span>
+<span class="k">type</span> <span class="n">Connection</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_state</span> <span class="n">state</span>
+<span class="p">}</span>
+
+<span class="c">//Open connection</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="n">Open</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Close connection</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="n">Close</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="nb">close</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Connection</span><span class="p">)</span> <span class="n">setState</span><span class="p">(</span><span class="n">state</span> <span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">state</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">con</span> <span class="o">:=</span> <span class="n">Connection</span><span class="p">{</span><span class="n">CloseState</span><span class="p">{}}</span>
+<span class="n">con</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="c">//printed: open the connection</span>
+<span class="n">con</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="c">//printed: connection is already open</span>
+<span class="n">con</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+<span class="c">//printed: close the connection</span>
+<span class="n">con</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+<span class="c">//printed: connection is already closed</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-strategy">Design Pattern Strategy</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19309.png" alt="Design Pattern Strategy" />
+<em>Design Pattern Strategy</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c">//Strategy with integer operation</span>
+<span class="k">type</span> <span class="n">Strategy</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">DoOperation</span><span class="p">(</span><span class="n">a</span> <span class="kt">int</span><span class="p">,</span> <span class="n">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//AddStrategy is ConcreteStrategy</span>
+<span class="k">type</span> <span class="n">AddStrategy</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//DoOperation is integer addition function</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">AddStrategy</span><span class="p">)</span> <span class="n">DoOperation</span><span class="p">(</span><span class="n">a</span> <span class="kt">int</span><span class="p">,</span> <span class="n">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="p">}</span>
+
+<span class="c">//SubstractStrategy is ConcreteStrategy</span>
+<span class="k">type</span> <span class="n">SubstractStrategy</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//DoOperation is integer subtraction function</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">SubstractStrategy</span><span class="p">)</span> <span class="n">DoOperation</span><span class="p">(</span><span class="n">a</span> <span class="kt">int</span><span class="p">,</span> <span class="n">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="p">}</span>
+
+<span class="c">//Calc is Context</span>
+<span class="k">type</span> <span class="n">Calc</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_strategy</span> <span class="n">Strategy</span>
+<span class="p">}</span>
+
+<span class="c">//Execute current strategy</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">Calc</span><span class="p">)</span> <span class="n">Execute</span><span class="p">(</span><span class="n">a</span> <span class="kt">int</span><span class="p">,</span> <span class="n">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">_strategy</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="m">0</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">_strategy</span><span class="o">.</span><span class="n">DoOperation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//SetStrategy changes the current strategy</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span><span class="n">Calc</span><span class="p">)</span> <span class="n">SetStrategy</span><span class="p">(</span><span class="n">strategy</span> <span class="n">Strategy</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">_strategy</span> <span class="o">=</span> <span class="n">strategy</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">calc</span> <span class="o">:=</span> <span class="n">Calc</span><span class="p">{}</span>
+<span class="n">result1</span> <span class="o">:=</span> <span class="n">calc</span><span class="o">.</span><span class="n">Execute</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="c">//result1 is 0</span>
+
+<span class="n">calc</span><span class="o">.</span><span class="n">SetStrategy</span><span class="p">(</span><span class="n">AddStrategy</span><span class="p">{})</span>
+<span class="n">result2</span> <span class="o">:=</span> <span class="n">calc</span><span class="o">.</span><span class="n">Execute</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="c">//result2 is 8</span>
+
+<span class="n">calc</span><span class="o">.</span><span class="n">SetStrategy</span><span class="p">(</span><span class="n">SubstractStrategy</span><span class="p">{})</span>
+<span class="n">result3</span> <span class="o">:=</span> <span class="n">calc</span><span class="o">.</span><span class="n">Execute</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="c">//result3 is 2</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">result3</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="design-pattern-visitor">Design Pattern Visitor</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://raw.githubusercontent.com/Ja7ad/blog/master/images/patterns/19311.png" alt="Design Pattern Visitor" />
+<em>Design Pattern Visitor</em></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+</pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"strconv"</span>
+<span class="p">)</span>
+
+<span class="c">//Element interface</span>
+<span class="k">type</span> <span class="n">Element</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Accept</span><span class="p">(</span><span class="n">v</span> <span class="n">CarVisitor</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Engine is ConcreteElement</span>
+<span class="k">type</span> <span class="n">Engine</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="c">//Accept operation that takes a visitor as an argument</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">Engine</span><span class="p">)</span> <span class="n">Accept</span><span class="p">(</span><span class="n">v</span> <span class="n">CarVisitor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">visitEngine</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Wheel is ConcreteElement</span>
+<span class="k">type</span> <span class="n">Wheel</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Number</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">//Accept operation</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">w</span> <span class="n">Wheel</span><span class="p">)</span> <span class="n">Accept</span><span class="p">(</span><span class="n">v</span> <span class="n">CarVisitor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">visitWheel</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Car is ConcreteElement</span>
+<span class="k">type</span> <span class="n">Car</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">_items</span> <span class="p">[]</span><span class="n">Element</span>
+<span class="p">}</span>
+
+<span class="c">//Accept operation</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">Car</span><span class="p">)</span> <span class="n">Accept</span><span class="p">(</span><span class="n">v</span> <span class="n">CarVisitor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">c</span><span class="o">.</span><span class="n">_items</span> <span class="p">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="n">Accept</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">visitCar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//CarVisitor is Visitor</span>
+<span class="k">type</span> <span class="n">CarVisitor</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">visitEngine</span><span class="p">(</span><span class="n">engine</span> <span class="n">Engine</span><span class="p">)</span>
+    <span class="n">visitWheel</span><span class="p">(</span><span class="n">wheel</span> <span class="n">Wheel</span><span class="p">)</span>
+    <span class="n">visitCar</span><span class="p">(</span><span class="n">car</span> <span class="n">Car</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//TestCarVisitor is ConcreteVisitor</span>
+<span class="k">type</span> <span class="n">TestCarVisitor</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">TestCarVisitor</span><span class="p">)</span> <span class="n">visitEngine</span><span class="p">(</span><span class="n">engine</span> <span class="n">Engine</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test engine"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">TestCarVisitor</span><span class="p">)</span> <span class="n">visitWheel</span><span class="p">(</span><span class="n">wheel</span> <span class="n">Wheel</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test wheel #"</span> <span class="o">+</span>
+        <span class="n">strconv</span><span class="o">.</span><span class="n">Itoa</span><span class="p">(</span><span class="n">wheel</span><span class="o">.</span><span class="n">Number</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">TestCarVisitor</span><span class="p">)</span> <span class="n">visitCar</span><span class="p">(</span><span class="n">car</span> <span class="n">Car</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"test car"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//RepairCarVisitor is ConcreteVisitor</span>
+<span class="k">type</span> <span class="n">RepairCarVisitor</span> <span class="k">struct</span><span class="p">{}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">RepairCarVisitor</span><span class="p">)</span> <span class="n">visitEngine</span><span class="p">(</span><span class="n">engine</span> <span class="n">Engine</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"repair engine"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">RepairCarVisitor</span><span class="p">)</span> <span class="n">visitWheel</span><span class="p">(</span><span class="n">wheel</span> <span class="n">Wheel</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"repair wheel #"</span> <span class="o">+</span>
+        <span class="n">strconv</span><span class="o">.</span><span class="n">Itoa</span><span class="p">(</span><span class="n">wheel</span><span class="o">.</span><span class="n">Number</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">v</span> <span class="n">RepairCarVisitor</span><span class="p">)</span> <span class="n">visitCar</span><span class="p">(</span><span class="n">car</span> <span class="n">Car</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"repair car"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Client</span>
+<span class="n">car</span> <span class="o">:=</span> <span class="n">Car</span><span class="p">{[]</span><span class="n">Element</span><span class="p">{</span>
+        <span class="n">Engine</span><span class="p">{},</span>
+        <span class="n">Wheel</span><span class="p">{</span><span class="m">1</span><span class="p">},</span>
+        <span class="n">Wheel</span><span class="p">{</span><span class="m">2</span><span class="p">},</span>
+        <span class="n">Wheel</span><span class="p">{</span><span class="m">3</span><span class="p">},</span>
+        <span class="n">Wheel</span><span class="p">{</span><span class="m">4</span><span class="p">},</span>
+<span class="p">}}</span>
+<span class="n">v1</span> <span class="o">:=</span> <span class="n">TestCarVisitor</span><span class="p">{}</span>
+<span class="n">v2</span> <span class="o">:=</span> <span class="n">RepairCarVisitor</span><span class="p">{}</span>
+
+<span class="n">car</span><span class="o">.</span><span class="n">Accept</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+<span class="n">car</span><span class="o">.</span><span class="n">Accept</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <h1 id="creational-patterns">Creational Patterns</h1>
