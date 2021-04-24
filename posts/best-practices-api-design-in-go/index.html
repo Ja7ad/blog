@@ -598,7 +598,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1009 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1005 words">5 min</span>
 
 
           <!-- page views -->
@@ -887,11 +887,10 @@
 
 <p>Examples include invalid authentication credentials, incorrect parameters, unknown version IDs, etc.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>- Do return `4xx` HTTP error codes when rejecting a client request due to one or more Service Errors.
-- Consider processing all attributes and then returning multiple validation problems in a single response.
-</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li>Do return <code class="language-plaintext highlighter-rouge">4xx</code> HTTP error codes when rejecting a client request due to one or more Service Errors.</li>
+  <li>Consider processing all attributes and then returning multiple validation problems in a single response.</li>
+</ul>
 
 <h2 id="golden-rules">Golden Rules</h2>
 
