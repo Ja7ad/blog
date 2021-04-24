@@ -706,6 +706,104 @@ This document is a reference for the Go community that aims to help developers w
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/best-practices-api-design-in-go/">Best Practices API Design in go</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Use kebab-case for URLs
+
+For example, if you want to get the list of orders.
+
+Bad:
+
+/systemOrders or /system_orders
+
+Good:
+
+/system-orders
+
+Use camelCase for Parameters
+
+For example, if you want to...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Apr 24, 2021,  7:03 AM +0430"
+  
+
+  
+   >
+
+  
+  
+
+  
+    Apr 24
+  
+
+  <i class="unloaded">2021-04-24T07:03:00+04:30</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1031 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/design-patterns-golang/">Golang Design Patterns Code</a>
     </h1>
 
@@ -1108,6 +1206,69 @@ func binarySearch(arr []int, x int) int {
     
     
     
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -1277,70 +1438,6 @@ func binarySearch(arr []int, x int) int {
     
     
     
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1393,6 +1490,9 @@ func binarySearch(arr []int, x int) int {
         <a class="post-tag" href="/tags/codes/">codes</a>
       
         
+        <a class="post-tag" href="/tags/tips/">tips</a>
+      
+        
         <a class="post-tag" href="/tags/floc/">floc</a>
       
         
@@ -1402,13 +1502,10 @@ func binarySearch(arr []int, x int) int {
         <a class="post-tag" href="/tags/patterns/">patterns</a>
       
         
+        <a class="post-tag" href="/tags/practice/">practice</a>
+      
+        
         <a class="post-tag" href="/tags/privacy/">privacy</a>
-      
-        
-        <a class="post-tag" href="/tags/tips/">tips</a>
-      
-        
-        <a class="post-tag" href="/tags/tricks/">Tricks</a>
       
 
       </div>
@@ -1569,6 +1666,69 @@ func binarySearch(arr []int, x int) int {
     
     
     
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -1738,70 +1898,6 @@ func binarySearch(arr []int, x int) int {
     
     
     
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1849,6 +1945,9 @@ func binarySearch(arr []int, x int) int {
         <a class="post-tag" href="/tags/codes/">codes</a>
       
         
+        <a class="post-tag" href="/tags/tips/">tips</a>
+      
+        
         <a class="post-tag" href="/tags/floc/">floc</a>
       
         
@@ -1858,13 +1957,10 @@ func binarySearch(arr []int, x int) int {
         <a class="post-tag" href="/tags/patterns/">patterns</a>
       
         
+        <a class="post-tag" href="/tags/practice/">practice</a>
+      
+        
         <a class="post-tag" href="/tags/privacy/">privacy</a>
-      
-        
-        <a class="post-tag" href="/tags/tips/">tips</a>
-      
-        
-        <a class="post-tag" href="/tags/tricks/">Tricks</a>
       
 
     </div>

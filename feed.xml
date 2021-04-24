@@ -4,7 +4,7 @@
   <id>https://blog.javad.tech/</id>
   <title>Javad Rajabzade</title>
   <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
-  <updated>2021-04-22T13:02:40+04:30</updated>
+  <updated>2021-04-24T10:40:07+04:30</updated>
   <author>
     <name>javad Rajabzade</name>
     <uri>https://blog.javad.tech/</uri>
@@ -17,6 +17,68 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Best Practices API Design in go</title>
+    <link href="https://blog.javad.tech/posts/best-practices-api-design-in-go/" rel="alternate" type="text/html" title="Best Practices API Design in go" />
+    <published>2021-04-24T07:03:00+04:30</published>
+  
+    <updated>2021-04-24T07:03:00+04:30</updated>
+  
+    <id>https://blog.javad.tech/posts/best-practices-api-design-in-go/</id>
+    <content src="https://blog.javad.tech/posts/best-practices-api-design-in-go/" />
+    <author>
+      <name>javad Rajabzade</name>
+    </author>
+
+  
+    
+    <category term="Golang" />
+    
+    <category term="Tips" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Use kebab-case for URLs
+
+For example, if you want to get the list of orders.
+
+Bad:
+
+/systemOrders or /system_orders
+
+Good:
+
+/system-orders
+
+Use camelCase for Parameters
+
+For example, if you want to get products from a particular shop.
+
+Bad:
+
+/system-orders/{order_id} or /system-orders/{OrderId}
+
+Good:
+
+/system-orders/{orderId}
+
+Plural Name to Point to a Collection
+
+If you want to get all the us...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>

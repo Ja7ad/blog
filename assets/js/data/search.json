@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "Best Practices API Design in go",
+    "url": "/posts/best-practices-api-design-in-go/",
+    "categories": "Golang, Tips",
+    "tags": "golang, go, practice, restfulapi, tips",
+    "date": "2021-04-24 07:03:00 +0430",
+    
+
+
+
+
+
+    "snippet": "Use kebab-case for URLsFor example, if you want to get the list of orders.Bad:/systemOrders or /system_ordersGood:/system-ordersUse camelCase for ParametersFor example, if you want to get products from a particular shop.Bad:/system-orders/{order_id} or /system-orders/{OrderId}Good:/system-orders/..."
+  },
+  
+  {
     "title": "How to Pervent Leak Privacy Information?",
     "url": "/posts/how-prevent-leak-privacy-information/",
     "categories": "Tricks, Privacy",
