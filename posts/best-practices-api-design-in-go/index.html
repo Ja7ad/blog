@@ -598,7 +598,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1031 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1009 words">5 min</span>
 
 
           <!-- page views -->
@@ -695,7 +695,7 @@
 3
 4
 </pre></td><td class="rouge-code"><pre><span class="p">{</span><span class="w">
-   </span><span class="err">user_name:</span><span class="w"> </span><span class="s2">"Mohammad Faisal"</span><span class="w">
+   </span><span class="err">user_name:</span><span class="w"> </span><span class="s2">"Javad Rajabzade"</span><span class="w">
    </span><span class="err">user_id:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre></td></tr></tbody></table></code></div></div>
@@ -748,11 +748,10 @@
 
 <p>There are many good API design tools for good documentation, such as:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>- [API Blueprint](https://apiblueprint.org/)
-- [Swagger](https://swagger.io/)
-</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li><a href="https://apiblueprint.org/">API Blueprint</a></li>
+  <li><a href="https://swagger.io/">Swagger</a></li>
+</ul>
 
 <p>Having good and detailed documentation results in a great user experience for your API consumers.</p>
 
@@ -860,17 +859,13 @@
 
 <p>Some practical examples are:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre>- `GET /shops/2/products` : Get the list of all products from shop 2.
-- `GET /shops/2/products/31` : Get the details of product 31, which belongs to shop 2.
-- `DELETE /shops/2/products/31` : should delete product 31, which belongs to shop 2.
-- `PUT /shops/2/products/31` : should update the info of product 31, Use PUT on resource-URL only, not the collection.
-- `POST /shops` : should create a new shop and return the details of the new shop created. Use POST on collection-URLs.
-</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GET /shops/2/products</code> : Get the list of all products from shop 2.</li>
+  <li><code class="language-plaintext highlighter-rouge">GET /shops/2/products/31</code> : Get the details of product 31, which belongs to shop 2.</li>
+  <li><code class="language-plaintext highlighter-rouge">DELETE /shops/2/products/31</code> : should delete product 31, which belongs to shop 2.</li>
+  <li><code class="language-plaintext highlighter-rouge">PUT /shops/2/products/31</code> : should update the info of product 31, Use PUT on resource-URL only, not the collection.</li>
+  <li><code class="language-plaintext highlighter-rouge">POST /shops</code> : should create a new shop and return the details of the new shop created. Use POST on collection-URLs.</li>
+</ul>
 
 <h2 id="cors">CORS</h2>
 
@@ -902,15 +897,12 @@
 
 <p>If you are ever in doubt about an API formatting decision, these golden rules can help guide us to making the right decision.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre>- Flat is better than nested.
-- Simple is better than complex.
-- Strings are better than numbers.
-- Consistency is better than customization.
-</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li>Flat is better than nested.</li>
+  <li>Simple is better than complex.</li>
+  <li>Strings are better than numbers.</li>
+  <li>Consistency is better than customization.</li>
+</ul>
 
 
       </div>
