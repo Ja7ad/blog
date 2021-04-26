@@ -4,11 +4,7 @@
   <id>https://blog.javad.tech/</id>
   <title>Javad Rajabzade</title>
   <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
-<<<<<<< HEAD
-  <updated>2021-04-26T16:21:28+04:30</updated>
-=======
-  <updated>2021-04-24T13:37:03+04:30</updated>
->>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
+  <updated>2021-04-26T16:24:16+04:30</updated>
   <author>
     <name>javad Rajabzade</name>
     <uri>https://blog.javad.tech/</uri>
@@ -24,7 +20,6 @@
 
   
   <entry>
-<<<<<<< HEAD
     <title>Golang Structres Code</title>
     <link href="https://blog.javad.tech/posts/golang-structures/" rel="alternate" type="text/html" title="Golang Structres Code" />
     <published>2021-04-26T12:23:00+04:30</published>
@@ -33,16 +28,6 @@
   
     <id>https://blog.javad.tech/posts/golang-structures/</id>
     <content src="https://blog.javad.tech/posts/golang-structures/" />
-=======
-    <title>Best Practices API Design in go</title>
-    <link href="https://blog.javad.tech/posts/best-practices-api-design-in-go/" rel="alternate" type="text/html" title="Best Practices API Design in go" />
-    <published>2021-04-24T07:03:00+04:30</published>
-  
-    <updated>2021-04-24T07:03:00+04:30</updated>
-  
-    <id>https://blog.javad.tech/posts/best-practices-api-design-in-go/</id>
-    <content src="https://blog.javad.tech/posts/best-practices-api-design-in-go/" />
->>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
     <author>
       <name>javad Rajabzade</name>
     </author>
@@ -51,11 +36,7 @@
     
     <category term="Golang" />
     
-<<<<<<< HEAD
     <category term="Codes" />
-=======
-    <category term="Tips" />
->>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
     
   
 
@@ -67,7 +48,6 @@
 
 
 
-<<<<<<< HEAD
       Structures
 
 Check for refrence equality
@@ -98,35 +78,6 @@ var equal4 = &amp;amp;amp;car1 == &amp;amp;amp;car2
 
 
 Cons...
-=======
-      Use kebab-case for URLs
-
-For example, if you want to get the list of orders.
-
-Bad:
-
-/systemOrders or /system_orders
-
-Good:
-
-/system-orders
-
-Use camelCase for Parameters
-
-For example, if you want to get products from a particular shop.
-
-Bad:
-
-/system-orders/{order_id} or /system-orders/{OrderId}
-
-Good:
-
-/system-orders/{orderId}
-
-Plural Name to Point to a Collection
-
-If you want to get all the us...
->>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
     </summary>
   
 
@@ -229,7 +180,7 @@ This document is a reference for the Go community that aims to help developers w
     <link href="https://blog.javad.tech/posts/design-patterns-golang/" rel="alternate" type="text/html" title="Golang Design Patterns Code" />
     <published>2021-04-21T12:03:00+04:30</published>
   
-    <updated>2021-04-22T11:48:42+04:30</updated>
+    <updated>2021-04-21T20:29:33+04:30</updated>
   
     <id>https://blog.javad.tech/posts/design-patterns-golang/</id>
     <content src="https://blog.javad.tech/posts/design-patterns-golang/" />
@@ -294,7 +245,7 @@ func (bc BankClient) G...
     <link href="https://blog.javad.tech/posts/golang-algorithms/" rel="alternate" type="text/html" title="Golang Algorithms Code" />
     <published>2021-04-21T11:03:00+04:30</published>
   
-    <updated>2021-04-22T11:48:42+04:30</updated>
+    <updated>2021-04-21T11:03:00+04:30</updated>
   
     <id>https://blog.javad.tech/posts/golang-algorithms/</id>
     <content src="https://blog.javad.tech/posts/golang-algorithms/" />
