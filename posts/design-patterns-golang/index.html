@@ -39,7 +39,7 @@
 <meta name="twitter:site" content="@ja7adr" />
 <meta name="twitter:creator" content="@Javad Rajabzade" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","description":"Behavioral Patterns","headline":"Golang Design Patterns Code","dateModified":"2021-04-21T20:29:33+04:30","datePublished":"2021-04-21T12:03:00+04:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.javad.tech/posts/design-patterns-golang/"},"url":"https://blog.javad.tech/posts/design-patterns-golang/","author":{"@type":"Person","name":"Javad Rajabzade"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","description":"Behavioral Patterns","headline":"Golang Design Patterns Code","dateModified":"2021-04-22T11:48:42+04:30","datePublished":"2021-04-21T12:03:00+04:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.javad.tech/posts/design-patterns-golang/"},"url":"https://blog.javad.tech/posts/design-patterns-golang/","author":{"@type":"Person","name":"Javad Rajabzade"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -137,6 +137,17 @@
 
 
 
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-195165176-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-195165176-1');
+</script>
 
 
 </head>
@@ -585,7 +596,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Apr 21, 2021,  8:29 PM +0430"
+    title="Thu, Apr 22, 2021, 11:48 AM +0430"
   
 
   prefix="Updated "
@@ -595,10 +606,10 @@
   
 
   
-    Apr 21
+    Apr 22
   
 
-  <i class="unloaded">2021-04-21T20:29:33+04:30</i>
+  <i class="unloaded">2021-04-22T11:48:42+04:30</i>
 
 </span>
 
@@ -881,7 +892,7 @@
 
 <span class="c">//Interpret func calculates expression</span>
 <span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="n">AndExpression</span><span class="p">)</span> <span class="n">Interpret</span><span class="p">(</span><span class="n">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">exp1</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">e</span><span class="o">.</span><span class="n">exp2</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">exp1</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="o">.</span><span class="n">exp2</span><span class="o">.</span><span class="n">Interpret</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c">//Client</span>
@@ -988,7 +999,7 @@
 
 <span class="c">//GetIterator return Iterator</span>
 <span class="k">func</span> <span class="p">(</span><span class="n">n</span> <span class="n">Numbers</span><span class="p">)</span> <span class="n">GetIterator</span><span class="p">()</span> <span class="n">IntIterator</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Iterator</span><span class="p">{</span><span class="n">n</span><span class="p">,</span> <span class="m">0</span><span class="p">}</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="n">Iterator</span><span class="p">{</span><span class="n">n</span><span class="p">,</span> <span class="m">0</span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c">//Iterator is ConcreteIterator</span>
@@ -1104,14 +1115,14 @@
 
 <span class="c">//NewSwitcher creates a new Switcher</span>
 <span class="k">func</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span> <span class="n">Mediator</span><span class="p">)</span> <span class="o">*</span><span class="n">Switcher</span> <span class="p">{</span>
-    <span class="n">switcher</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Switcher</span><span class="p">{</span><span class="no">false</span><span class="p">,</span> <span class="n">mediator</span><span class="p">}</span>
+    <span class="n">switcher</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">Switcher</span><span class="p">{</span><span class="no">false</span><span class="p">,</span> <span class="n">mediator</span><span class="p">}</span>
     <span class="n">mediator</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">switcher</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">switcher</span>
 <span class="p">}</span>
 
 <span class="c">//Sync starts the mediator Sync function</span>
 <span class="k">func</span> <span class="p">(</span><span class="n">s</span> <span class="n">Switcher</span><span class="p">)</span> <span class="n">Sync</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">_mediator</span><span class="o">.</span><span class="n">Sync</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">_mediator</span><span class="o">.</span><span class="n">Sync</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c">//SyncMediator is ConcreteMediator</span>
@@ -1132,7 +1143,7 @@
 <span class="p">}</span>
 
 <span class="c">//Client</span>
-<span class="n">mediator</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">SyncMediator</span><span class="p">{[]</span><span class="o">*</span><span class="n">Switcher</span><span class="p">{}}</span>
+<span class="n">mediator</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">SyncMediator</span><span class="p">{[]</span><span class="o">*</span><span class="n">Switcher</span><span class="p">{}}</span>
 <span class="n">switcher1</span> <span class="o">:=</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span><span class="p">)</span>
 <span class="n">switcher2</span> <span class="o">:=</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span><span class="p">)</span>
 <span class="n">switcher3</span> <span class="o">:=</span> <span class="n">NewSwitcher</span><span class="p">(</span><span class="n">mediator</span><span class="p">)</span>
@@ -1295,7 +1306,7 @@
 <span class="p">}</span>
 
 <span class="c">//Client</span>
-<span class="n">shape</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Shape</span><span class="p">{}</span>
+<span class="n">shape</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">Shape</span><span class="p">{}</span>
 <span class="n">helper</span> <span class="o">:=</span> <span class="n">NewShapeHelper</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="n">helper</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
@@ -2229,13 +2240,13 @@
 <span class="n">textMaker</span> <span class="o">:=</span> <span class="n">TextMaker</span><span class="p">{}</span>
 
 <span class="n">textBuilder</span> <span class="o">:=</span> <span class="n">TextBuilder</span><span class="p">{}</span>
-<span class="n">textMaker</span><span class="o">.</span><span class="n">MakeText</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">textBuilder</span><span class="p">)</span>
+<span class="n">textMaker</span><span class="o">.</span><span class="n">MakeText</span><span class="p">(</span><span class="o">&amp;</span><span class="n">textBuilder</span><span class="p">)</span>
 <span class="n">text</span> <span class="o">:=</span> <span class="n">textBuilder</span><span class="o">.</span><span class="n">Text</span>
 <span class="c">//text: line 1</span>
 <span class="c">//      line 2</span>
 
 <span class="n">htmlBuilder</span> <span class="o">:=</span> <span class="n">HTMLBuilder</span><span class="p">{}</span>
-<span class="n">textMaker</span><span class="o">.</span><span class="n">MakeText</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">htmlBuilder</span><span class="p">)</span>
+<span class="n">textMaker</span><span class="o">.</span><span class="n">MakeText</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htmlBuilder</span><span class="p">)</span>
 <span class="n">html</span> <span class="o">:=</span> <span class="n">htmlBuilder</span><span class="o">.</span><span class="n">HTML</span>
 <span class="c">//html: &lt;span&gt;line 1&lt;/span&gt;&lt;br/&gt;</span>
 <span class="c">//      &lt;span&gt;line 2&lt;/span&gt;</span>
@@ -2483,7 +2494,7 @@
 <span class="c">//GetInstance returns a single instance of the settings</span>
 <span class="k">func</span> <span class="n">GetInstance</span><span class="p">()</span> <span class="o">*</span><span class="n">Settings</span> <span class="p">{</span>
     <span class="k">if</span> <span class="n">instance</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
-        <span class="n">instance</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Settings</span><span class="p">{}</span> <span class="c">// &lt;--- NOT THREAD SAFE</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Settings</span><span class="p">{}</span> <span class="c">// &lt;--- NOT THREAD SAFE</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">instance</span>
 <span class="p">}</span>
@@ -2835,12 +2846,12 @@
 <span class="p">}</span>
 
 <span class="c">//Client</span>
-<span class="n">textMaker</span> <span class="o">:=</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">TextBuilder</span><span class="p">{})</span>
+<span class="n">textMaker</span> <span class="o">:=</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TextBuilder</span><span class="p">{})</span>
 <span class="n">text</span> <span class="o">:=</span> <span class="n">textMaker</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
 <span class="c">//test: line 1</span>
 <span class="c">//      line 2</span>
 
-<span class="n">htmlMaker</span> <span class="o">:=</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">HTMLBuilder</span><span class="p">{})</span>
+<span class="n">htmlMaker</span> <span class="o">:=</span> <span class="n">fillTextBuilder</span><span class="p">(</span><span class="o">&amp;</span><span class="n">HTMLBuilder</span><span class="p">{})</span>
 <span class="n">html</span> <span class="o">:=</span> <span class="n">htmlMaker</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
 <span class="c">//html: &lt;span&gt;line 1&lt;/span&gt;&lt;br/&gt;</span>
 <span class="c">//      &lt;span&gt;line 2&lt;/span&gt;&lt;br/&gt;</span>
@@ -3378,7 +3389,7 @@
 <span class="c">//GetImage creates an Subject</span>
 <span class="k">func</span> <span class="p">(</span><span class="n">ip</span> <span class="n">ImageProxy</span><span class="p">)</span> <span class="n">GetImage</span><span class="p">()</span> <span class="o">*</span><span class="n">Image</span> <span class="p">{</span>
     <span class="k">if</span> <span class="n">ip</span><span class="o">.</span><span class="n">_image</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
-        <span class="n">ip</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">Image</span><span class="p">{</span><span class="n">ip</span><span class="o">.</span><span class="n">FileName</span><span class="p">}</span>
+        <span class="n">ip</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Image</span><span class="p">{</span><span class="n">ip</span><span class="o">.</span><span class="n">FileName</span><span class="p">}</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">ip</span><span class="o">.</span><span class="n">_image</span>
 <span class="p">}</span>
@@ -3516,6 +3527,16 @@
       <span>Recent Update</span>
       <ul class="post-content pl-0 pb-1 ml-1 mt-2">
 
+      
+        
+        
+        
+        <li><a href="/posts/how-prevent-leak-privacy-information/">How to Pervent Leak Privacy Information?</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/golang-algorithms/">Golang Algorithms Code</a></li>
       
         
         
