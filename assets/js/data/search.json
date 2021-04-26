@@ -1,18 +1,30 @@
 [
   
   {
+<<<<<<< HEAD
     "title": "Golang Structres Code",
     "url": "/posts/golang-structures/",
     "categories": "Golang, Codes",
     "tags": "golang, go, struct, codes",
     "date": "2021-04-26 12:23:00 +0430",
+=======
+    "title": "Best Practices API Design in go",
+    "url": "/posts/best-practices-api-design-in-go/",
+    "categories": "Golang, Tips",
+    "tags": "golang, go, practice, restfulapi, tips",
+    "date": "2021-04-24 07:03:00 +0430",
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
     
 
 
 
 
 
+<<<<<<< HEAD
     "snippet": "StructuresCheck for refrence equalityimport (    &quot;fmt&quot;    &quot;reflect&quot;)//There are no classes in golangtype car struct{}var car1 = car{}var car2 = car{}var car3 = car1var equal1 = car1 == car2//equal1 is Truevar equal2 = car1 == car3//equal2 is Truevar equal3 = reflect.DeepEqual(..."
+=======
+    "snippet": "Use kebab-case for URLsFor example, if you want to get the list of orders.Bad:/systemOrders or /system_ordersGood:/system-ordersUse camelCase for ParametersFor example, if you want to get products from a particular shop.Bad:/system-orders/{order_id} or /system-orders/{OrderId}Good:/system-orders/..."
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
   },
   
   {

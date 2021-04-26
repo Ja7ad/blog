@@ -39,7 +39,7 @@
 <meta name="twitter:site" content="@ja7adr" />
 <meta name="twitter:creator" content="@Javad Rajabzade" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","description":"Search Algorithms","headline":"Golang Algorithms Code","dateModified":"2021-04-21T11:03:00+04:30","datePublished":"2021-04-21T11:03:00+04:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.javad.tech/posts/golang-algorithms/"},"url":"https://blog.javad.tech/posts/golang-algorithms/","author":{"@type":"Person","name":"Javad Rajabzade"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Javad Rajabzade"},"url":"https://blog.javad.tech/posts/golang-algorithms/","@type":"BlogPosting","headline":"Golang Algorithms Code","dateModified":"2021-04-22T11:48:42+04:30","datePublished":"2021-04-21T11:03:00+04:30","description":"Search Algorithms","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.javad.tech/posts/golang-algorithms/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -137,6 +137,17 @@
 
 
 
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-195165176-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-195165176-1');
+</script>
 
 
 </head>
@@ -571,6 +582,39 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Apr 22, 2021, 11:48 AM +0430"
+  
+
+  prefix="Updated "
+   >
+
+  
+  
+
+  
+    Apr 22
+  
+
+  <i class="unloaded">2021-04-22T11:48:42+04:30</i>
+
+</span>
+
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -907,7 +951,7 @@
     <span class="n">low</span> <span class="o">:=</span> <span class="m">0</span>
     <span class="n">high</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">low</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">high</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">low</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">high</span><span class="p">])</span> <span class="p">{</span>
         <span class="k">var</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">arr</span><span class="p">[</span><span class="n">low</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">high</span><span class="p">]</span><span class="o">-</span><span class="n">arr</span><span class="p">[</span><span class="n">low</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="p">{</span>
@@ -1465,7 +1509,7 @@
     <span class="n">r</span> <span class="o">:=</span> <span class="m">0</span>
     <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span>
 
-    <span class="k">for</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="n">left</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="p">{</span>
             <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">left</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
             <span class="n">l</span><span class="o">++</span>
@@ -1963,6 +2007,11 @@
         
         
         
+        <li><a href="/posts/golang-algorithms/">Golang Algorithms Code</a></li>
+      
+        
+        
+        
         <li><a href="/posts/design-patterns-golang/">Golang Design Patterns Code</a></li>
       
 
@@ -2070,6 +2119,69 @@
     
     
     
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -2239,70 +2351,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2355,6 +2403,9 @@
         <a class="post-tag" href="/tags/algorithms/">algorithms</a>
       
         
+        <a class="post-tag" href="/tags/tips/">tips</a>
+      
+        
         <a class="post-tag" href="/tags/floc/">floc</a>
       
         
@@ -2364,13 +2415,17 @@
         <a class="post-tag" href="/tags/patterns/">patterns</a>
       
         
-        <a class="post-tag" href="/tags/privacy/">privacy</a>
+        <a class="post-tag" href="/tags/practice/">practice</a>
       
         
+<<<<<<< HEAD
         <a class="post-tag" href="/tags/struct/">struct</a>
       
         
         <a class="post-tag" href="/tags/tips/">tips</a>
+=======
+        <a class="post-tag" href="/tags/privacy/">privacy</a>
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
       
 
       </div>
@@ -2469,6 +2524,13 @@
 
 
   
+<<<<<<< HEAD
+
+  
+    
+
+=======
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
 
   
     
@@ -2476,8 +2538,11 @@
 
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
 <!-- Fill with the other newlest posts  -->
 
 
@@ -2675,7 +2740,11 @@ var car1...
       
       
       <div class="card">
+<<<<<<< HEAD
         <a href="/posts/golang-clean-code/">
+=======
+        <a href="/posts/best-practices-api-design-in-go/">
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
           <div class="card-body">
             <!--
   Date format snippet
@@ -2696,14 +2765,22 @@ var car1...
   
 
   
-    Apr 21
+    Apr 24
   
 
+<<<<<<< HEAD
   <i class="unloaded">2021-04-21T13:03:00+04:30</i>
 
 </span>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Clean Go Code</h3>
+=======
+  <i class="unloaded">2021-04-24T07:03:00+04:30</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Best Practices API Design in go</h3>
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
             <div class="text-muted small">
               <p>
                 
@@ -2712,9 +2789,27 @@ var car1...
 
 
 
+<<<<<<< HEAD
                 Preface: Why Write Clean Code?
 
 This document is a reference for the Go community that aims to help developers write cleaner code. Whether you’re working on a personal project or as part of a large...
+=======
+                Use kebab-case for URLs
+
+For example, if you want to get the list of orders.
+
+Bad:
+
+/systemOrders or /system_orders
+
+Good:
+
+/system-orders
+
+Use camelCase for Parameters
+
+For example, if you want to...
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
               </p>
             </div>
           </div>
@@ -2937,6 +3032,69 @@ This document is a reference for the Go community that aims to help developers w
     
     
     
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -3106,70 +3264,6 @@ This document is a reference for the Go community that aims to help developers w
     
     
     
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -3217,6 +3311,9 @@ This document is a reference for the Go community that aims to help developers w
         <a class="post-tag" href="/tags/algorithms/">algorithms</a>
       
         
+        <a class="post-tag" href="/tags/tips/">tips</a>
+      
+        
         <a class="post-tag" href="/tags/floc/">floc</a>
       
         
@@ -3226,13 +3323,17 @@ This document is a reference for the Go community that aims to help developers w
         <a class="post-tag" href="/tags/patterns/">patterns</a>
       
         
-        <a class="post-tag" href="/tags/privacy/">privacy</a>
+        <a class="post-tag" href="/tags/practice/">practice</a>
       
         
+<<<<<<< HEAD
         <a class="post-tag" href="/tags/struct/">struct</a>
       
         
         <a class="post-tag" href="/tags/tips/">tips</a>
+=======
+        <a class="post-tag" href="/tags/privacy/">privacy</a>
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
       
 
     </div>

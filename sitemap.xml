@@ -2,11 +2,11 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://blog.javad.tech/posts/golang-algorithms/</loc>
-<lastmod>2021-04-21T11:03:00+04:30</lastmod>
+<lastmod>2021-04-22T11:48:42+04:30</lastmod>
 </url>
 <url>
 <loc>https://blog.javad.tech/posts/design-patterns-golang/</loc>
-<lastmod>2021-04-21T20:29:33+04:30</lastmod>
+<lastmod>2021-04-22T11:48:42+04:30</lastmod>
 </url>
 <url>
 <loc>https://blog.javad.tech/posts/golang-clean-code/</loc>
@@ -17,6 +17,7 @@
 <lastmod>2021-04-21T16:43:23+04:30</lastmod>
 </url>
 <url>
+<<<<<<< HEAD
 <loc>https://blog.javad.tech/posts/golang-structures/</loc>
 <lastmod>2021-04-26T12:23:00+04:30</lastmod>
 </url>
@@ -35,6 +36,26 @@
 <url>
 <loc>https://blog.javad.tech/about/</loc>
 <lastmod>2021-04-26T16:21:28+04:30</lastmod>
+=======
+<loc>https://blog.javad.tech/posts/best-practices-api-design-in-go/</loc>
+<lastmod>2021-04-24T07:03:00+04:30</lastmod>
+</url>
+<url>
+<loc>https://blog.javad.tech/categories/</loc>
+<lastmod>2021-04-24T13:37:03+04:30</lastmod>
+</url>
+<url>
+<loc>https://blog.javad.tech/tags/</loc>
+<lastmod>2021-04-24T13:37:03+04:30</lastmod>
+</url>
+<url>
+<loc>https://blog.javad.tech/archives/</loc>
+<lastmod>2021-04-24T13:37:03+04:30</lastmod>
+</url>
+<url>
+<loc>https://blog.javad.tech/about/</loc>
+<lastmod>2021-04-24T13:37:03+04:30</lastmod>
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
 </url>
 <url>
 <loc>https://blog.javad.tech/</loc>
@@ -70,7 +91,14 @@
 <loc>https://blog.javad.tech/tags/tricks/</loc>
 </url>
 <url>
+<<<<<<< HEAD
 <loc>https://blog.javad.tech/tags/struct/</loc>
+=======
+<loc>https://blog.javad.tech/tags/practice/</loc>
+</url>
+<url>
+<loc>https://blog.javad.tech/tags/restfulapi/</loc>
+>>>>>>> 79c792c8541de345a4acdfccd638e8dbaa68d8c4
 </url>
 <url>
 <loc>https://blog.javad.tech/categories/golang/</loc>
