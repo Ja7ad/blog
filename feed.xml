@@ -4,7 +4,7 @@
   <id>https://blog.javad.tech/</id>
   <title>Javad Rajabzade</title>
   <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
-  <updated>2021-04-21T22:11:44+04:30</updated>
+  <updated>2021-04-26T16:21:28+04:30</updated>
   <author>
     <name>javad Rajabzade</name>
     <uri>https://blog.javad.tech/</uri>
@@ -17,6 +17,71 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Golang Structres Code</title>
+    <link href="https://blog.javad.tech/posts/golang-structures/" rel="alternate" type="text/html" title="Golang Structres Code" />
+    <published>2021-04-26T12:23:00+04:30</published>
+  
+    <updated>2021-04-26T12:23:00+04:30</updated>
+  
+    <id>https://blog.javad.tech/posts/golang-structures/</id>
+    <content src="https://blog.javad.tech/posts/golang-structures/" />
+    <author>
+      <name>javad Rajabzade</name>
+    </author>
+
+  
+    
+    <category term="Golang" />
+    
+    <category term="Codes" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Structures
+
+Check for refrence equality
+
+import (
+    "fmt"
+    "reflect"
+)
+
+//There are no classes in golang
+type car struct{}
+
+var car1 = car{}
+var car2 = car{}
+var car3 = car1
+
+var equal1 = car1 == car2
+//equal1 is True
+
+var equal2 = car1 == car3
+//equal2 is True
+
+var equal3 = reflect.DeepEqual(car1, car2)
+//equal3 is True
+
+var equal4 = &amp;amp;amp;car1 == &amp;amp;amp;car2
+//equal4 is False
+
+
+Cons...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>

@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "Golang Structres Code",
+    "url": "/posts/golang-structures/",
+    "categories": "Golang, Codes",
+    "tags": "golang, go, struct, codes",
+    "date": "2021-04-26 12:23:00 +0430",
+    
+
+
+
+
+
+    "snippet": "StructuresCheck for refrence equalityimport (    &quot;fmt&quot;    &quot;reflect&quot;)//There are no classes in golangtype car struct{}var car1 = car{}var car2 = car{}var car3 = car1var equal1 = car1 == car2//equal1 is Truevar equal2 = car1 == car3//equal2 is Truevar equal3 = reflect.DeepEqual(..."
+  },
+  
+  {
     "title": "How to Pervent Leak Privacy Information?",
     "url": "/posts/how-prevent-leak-privacy-information/",
     "categories": "Tricks, Privacy",
