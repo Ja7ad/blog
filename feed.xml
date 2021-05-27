@@ -4,7 +4,7 @@
   <id>https://blog.javad.tech/</id>
   <title>Javad Rajabzade</title>
   <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
-  <updated>2021-05-27T08:31:02+04:30</updated>
+  <updated>2021-05-27T12:18:56+04:30</updated>
   <author>
     <name>javad Rajabzade</name>
     <uri>https://blog.javad.tech/</uri>
@@ -17,6 +17,50 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Build CI/CD pipelines in Go with github actions and Dockers</title>
+    <link href="https://blog.javad.tech/posts/build-CICD-pipeline-in-go/" rel="alternate" type="text/html" title="Build CI/CD pipelines in Go with github actions and Dockers" />
+    <published>2021-05-27T08:48:23+04:30</published>
+  
+    <updated>2021-05-27T08:48:23+04:30</updated>
+  
+    <id>https://blog.javad.tech/posts/build-CICD-pipeline-in-go/</id>
+    <content src="https://blog.javad.tech/posts/build-CICD-pipeline-in-go/" />
+    <author>
+      <name>javad Rajabzade</name>
+    </author>
+
+  
+    
+    <category term="Golang" />
+    
+    <category term="Tutorial" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      This tutorial will show you how to setup a CI/CD pipeline using GitHub Actions. The pipeline will test, build and publish a Go app to Docker Hub when changes are pushed to a GitHub repository.
+
+Overview
+
+Here is an overview of what’s in this guide:
+
+
+  We start by creating a simple console app in Go that prints Hello World along with the version number of the app.
+  We will create a GitHub repo...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -205,71 +249,6 @@ How to Improve privacy in web?
       Preface: Why Write Clean Code?
 
 This document is a reference for the Go community that aims to help developers write cleaner code. Whether you’re working on a personal project or as part of a larger team, writing clean code is an important skill to have. Establishing good paradigms and consistent, accessible standards for writing clean code can help prevent developers from wasting many meaningl...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Golang Design Patterns Code</title>
-    <link href="https://blog.javad.tech/posts/design-patterns-golang/" rel="alternate" type="text/html" title="Golang Design Patterns Code" />
-    <published>2021-04-21T12:03:00+04:30</published>
-  
-    <updated>2021-04-22T11:48:42+04:30</updated>
-  
-    <id>https://blog.javad.tech/posts/design-patterns-golang/</id>
-    <content src="https://blog.javad.tech/posts/design-patterns-golang/" />
-    <author>
-      <name>javad Rajabzade</name>
-    </author>
-
-  
-    
-    <category term="Golang" />
-    
-    <category term="Codes" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Behavioral Patterns
-
-
-Design Pattern Command
-
-
-Design Pattern Command
-
-import (
-    "fmt"
-)
-
-//Command type
-type Command interface {
-    Execute()
-}
-
-//BankClient is Invoker
-type BankClient struct {
-    putCommand Command
-    getCommand Command
-}
-
-//PutMoney runs the putCommand
-func (bc BankClient) PutMoney() {
-    bc.putCommand.Execute()
-}
-
-//GetMoney runs the getCommand
-func (bc BankClient) G...
     </summary>
   
 

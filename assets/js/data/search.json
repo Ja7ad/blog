@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "Build CI/CD pipelines in Go with github actions and Dockers",
+    "url": "/posts/build-CICD-pipeline-in-go/",
+    "categories": "Golang, Tutorial",
+    "tags": "golang, go, cicd, github, action, docker",
+    "date": "2021-05-27 08:48:23 +0430",
+    
+
+
+
+
+
+    "snippet": "This tutorial will show you how to setup a CI/CD pipeline using GitHub Actions. The pipeline will test, build and publish a Go app to Docker Hub when changes are pushed to a GitHub repository.OverviewHere is an overview of what’s in this guide:  We start by creating a simple console app in Go tha..."
+  },
+  
+  {
     "title": "Golang Context",
     "url": "/posts/golang-context/",
     "categories": "Golang, Tutorial",
