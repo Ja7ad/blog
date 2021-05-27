@@ -753,7 +753,7 @@ Hello glang
 
 <h1 id="2-create-github-repository">2. Create GitHub Repository</h1>
 
-<p>Login to your GitHub account and create a new repository. For the following example I have created a new public repo (exmple <a href="https://github.com/Ja7ad/golang-pipline">golang-pipline</a>)</p>
+<p>Login to your GitHub account and create a new repository. For the following example I have created a new public repo (exmple <a href="https://github.com/Ja7ad/golang-pipeline">golang-pipeline</a>)</p>
 
 <h1 id="3-assign-docker-hub-credentials-as-secrets">3. Assign Docker Hub Credentials as Secrets</h1>
 
@@ -896,7 +896,7 @@ Hello glang
 
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>Replace Variables in the environment with <strong>$</strong> ( <a href="https://github.com/Ja7ad/golang-pipline/blob/main/.github/workflows/push.yml">example push.yml</a> )</p>
+<p>Replace Variables in the environment with <strong>$</strong> ( <a href="https://github.com/Ja7ad/golang-pipeline/blob/main/.github/workflows/push.yml">example push.yml</a> )</p>
 
 <p>The workflow config is quite simple. You will notice there are two jobs, one called <strong>test</strong> and one called <strong>deploy</strong>. The <strong>test</strong> job has one step that uses an if to make sure it only runs when changes are pushed to the main branch or a tag is pushed.</p>
 
@@ -904,7 +904,7 @@ Hello glang
 
 <p>The next two steps setup the environment so that Docker images can be built. Finally, a step is run that signs into your Docker Hub account using the credentials stored in GitHub Secrets, then the Docker image is built and pushed to Docker Hub.</p>
 
-<p>You Can see you run action pipeline in <strong>https://github.com/USERNAME/golang-pipline/actions</strong> your repo.</p>
+<p>You Can see you run action pipeline in <strong>https://github.com/USERNAME/golang-pipeline/actions</strong> your repo.</p>
 
 <h1 id="5-create-dockerfile">5. Create Dockerfile</h1>
 
