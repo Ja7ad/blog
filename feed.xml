@@ -4,7 +4,7 @@
   <id>https://blog.javad.tech/</id>
   <title>Javad Rajabzade</title>
   <subtitle>Back-end, Microservice programming and UI/UX design are some of my specialties. An expert in Graphic Design tools like Photoshop and Adobe XD, I am a skilled Back-end Developer.</subtitle>
-  <updated>2021-04-26T16:28:15+04:30</updated>
+  <updated>2021-05-27T08:31:02+04:30</updated>
   <author>
     <name>javad Rajabzade</name>
     <uri>https://blog.javad.tech/</uri>
@@ -17,6 +17,42 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Golang Context</title>
+    <link href="https://blog.javad.tech/posts/golang-context/" rel="alternate" type="text/html" title="Golang Context" />
+    <published>2021-05-27T04:46:00+04:30</published>
+  
+    <updated>2021-05-27T04:46:00+04:30</updated>
+  
+    <id>https://blog.javad.tech/posts/golang-context/</id>
+    <content src="https://blog.javad.tech/posts/golang-context/" />
+    <author>
+      <name>javad Rajabzade</name>
+    </author>
+
+  
+    
+    <category term="Golang" />
+    
+    <category term="Tutorial" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Applications in golang use Contexts for controlling and managing very important aspects of reliable applications, such as cancellation and data sharing in concurrent programming. This may sound trivial but in reality, it’s not that so. The entry point for the contexts in golang is the context package. It is extremely useful and probably one of the most versatile packages of the entire language....
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -234,69 +270,6 @@ func (bc BankClient) PutMoney() {
 
 //GetMoney runs the getCommand
 func (bc BankClient) G...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Golang Algorithms Code</title>
-    <link href="https://blog.javad.tech/posts/golang-algorithms/" rel="alternate" type="text/html" title="Golang Algorithms Code" />
-    <published>2021-04-21T11:03:00+04:30</published>
-  
-    <updated>2021-04-22T11:48:42+04:30</updated>
-  
-    <id>https://blog.javad.tech/posts/golang-algorithms/</id>
-    <content src="https://blog.javad.tech/posts/golang-algorithms/" />
-    <author>
-      <name>javad Rajabzade</name>
-    </author>
-
-  
-    
-    <category term="Golang" />
-    
-    <category term="Codes" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Search Algorithms
-
-
-Binary search
-
-package main
-
-import (
-    "fmt"
-    "time"
-)
-
-//works when the array is sorted
-func binarySearch(arr []int, x int) int {
-    i := 0
-    j := len(arr)
-    for i != j {
-        var m = (i + j) / 2
-        if x == arr[m] {
-            return m
-        }
-        if x &amp;lt; arr[m] {
-            j = m
-        } else {
-            i = m + 1
-        }
-    }
-    return...
     </summary>
   
 

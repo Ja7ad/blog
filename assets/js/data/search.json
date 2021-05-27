@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "Golang Context",
+    "url": "/posts/golang-context/",
+    "categories": "Golang, Tutorial",
+    "tags": "golang, go, context",
+    "date": "2021-05-27 04:46:00 +0430",
+    
+
+
+
+
+
+    "snippet": "Applications in golang use Contexts for controlling and managing very important aspects of reliable applications, such as cancellation and data sharing in concurrent programming. This may sound trivial but in reality, it’s not that so. The entry point for the contexts in golang is the context pac..."
+  },
+  
+  {
     "title": "Golang Structures Code",
     "url": "/posts/golang-structures/",
     "categories": "Golang, Codes",
