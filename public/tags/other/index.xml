@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Other on The Engineer’s Notebook</title>
+    <link>http://localhost:1313/tags/other/</link>
+    <description>Recent content in Other on The Engineer’s Notebook</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 11 Feb 2025 15:43:48 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/other/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Start of the journey</title>
+      <link>http://localhost:1313/post/start-of-the-journey/</link>
+      <pubDate>Tue, 11 Feb 2025 15:43:48 +0000</pubDate>
+      <guid>http://localhost:1313/post/start-of-the-journey/</guid>
+      <description>&lt;p&gt;Welcome to &lt;strong&gt;The Engineer’s Notebook&lt;/strong&gt;, a place where I document my experiences, insights, and technical explorations as a software engineer.&lt;/p&gt;&#xA;&lt;p&gt;I’m &lt;strong&gt;Javad Rajbzadeh&lt;/strong&gt;, a &lt;strong&gt;senior software engineer&lt;/strong&gt; with over a &lt;strong&gt;decade of experience&lt;/strong&gt; in software development, system architecture, and blockchain technology. Throughout my career, I’ve built, scaled, and optimized software systems across various domains, from backend engineering and distributed system and AI-driven applications.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-this-notebook-is-about&#34;&gt;What This Notebook Is About&lt;/h2&gt;&#xA;&lt;p&gt;This blog is my personal space for:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
