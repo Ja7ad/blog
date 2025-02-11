@@ -1,4 +1,6 @@
 .idea/
 .code/
 .obsidian/
-public
+resources/
+public/
+*.lock
