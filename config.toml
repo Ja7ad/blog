@@ -23,11 +23,6 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 [author]                  # essential                     # 必需
   name = "Javad"
 
-[sitemap]                 # essential                     # 必需
-  changefreq = "weekly"
-  priority = 0.5
-  filename = "sitemap.xml"
-
 [[menu.main]]             # config your menu              # 配置目录
   name = "Home"
   weight = 10
@@ -48,6 +43,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   weight = 40
   identifier = "categories"
   url = "/categories/"
+  
+[sitemap]                 # essential                     # 必需
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
 
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
