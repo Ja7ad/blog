@@ -36,10 +36,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get install pngquant
-
       - name: Setup Hugo
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
@@ -53,10 +49,7 @@ jobs:
         run: |
             hugo \
             --gc --minify \
-            --baseURL "https://docs.pactus.org/"
-
-      - name: Optimizing PNG images
-        run: find "./public" -type f -name "*.png" -exec pngquant --verbose --force --ext .png {} \;
+            --baseURL "https://blog.javad.dev/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
