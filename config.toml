@@ -31,7 +31,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 [[menu.main]]             # config your menu              # 配置目录
   name = "Home"
   weight = 10
-  identifier = "home"
+  identifier = "archives"
   url = "/post/"
 
 [params]
