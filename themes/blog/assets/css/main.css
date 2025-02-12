@@ -1,0 +1,148 @@
+/* General Styling */
+body {
+  font-family: "Arial", sans-serif;
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #ddd;
+}
+
+.logo a {
+  font-size: 1.8em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #222;
+}
+
+.logo a:hover {
+  color: #007bff;
+}
+
+/* Social Icons */
+.socials a {
+  text-decoration: none;
+  font-size: 1.5em;
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+.socials a:hover {
+  opacity: 1;
+}
+
+/* Post List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 8px 0;
+  font-size: 1.1em;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .socials {
+      margin-top: 10px;
+  }
+}
+
+/* Archive Page Styling */
+.archive {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.collection-title {
+  margin-bottom: 10px;
+}
+
+.archive-year {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #333;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.archive-post {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  padding: 5px 0;
+}
+
+.archive-post-time {
+  color: #999;
+  font-weight: bold;
+  width: 60px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.archive-post-title a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.archive-post-title a:hover {
+  text-decoration: underline;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.prev, .next {
+  text-decoration: none;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.prev:hover, .next:hover {
+  text-decoration: underline;
+}
+
+.archive-post-title {
+  display: inline-block;
+}
+
+.archive-post-read-time {
+  font-size: 0.9em;
+  color: #777;
+  margin-left: 8px;
+}

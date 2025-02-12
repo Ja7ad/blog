@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section id="post-list" class="archive">
+  {{ range .Pages.GroupByDate "2006" }}  <!-- Group by Year -->
+    <div class="collection-title">
+      <h2 class="archive-year">{{ .Key }}</h2>
+    </div>
+    {{ range .Pages }}
+    <div class="archive-post">
+      <span class="archive-post-time">
+        {{ .Date.Format "Jan-02" }}  <!-- Month Short Name -->
+      </span>
+      <span class="archive-post-title">
+        <a href="{{ .RelPermalink }}" class="archive-post-link">
+          {{ .Title }}
+        </a>
+        <span class="archive-post-read-time">
+          (read in {{ .ReadingTime }} min)
+        </span>
+      </span>
+    </div>
+    {{ end }}
+  {{ end }}
+</section>
+{{ end }}

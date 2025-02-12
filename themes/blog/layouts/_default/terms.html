@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{ $pageSize := default 10 .Site.Params.archivePaginate }}
+{{ $paginator := .Paginate (.Data.Pages.ByDate.Reverse) $pageSize }}
+
+<section id="archive" class="archive">
+  {{ if and (not $paginator.HasPrev) .Site.Params.showArchiveCount }}
+    <div class="archive-title">
+      <span class="archive-post-counter">
+        {{ len .Data.Pages }} posts in total
+      </span>
+    </div>
+  {{ end }}
+
+  {{ range $paginator.Pages.GroupByDate "2006" }}
+    <div class="collection-title">
+      <h2 class="archive-year">{{ .Key }}</h2>
+    </div>
+    {{ range .Pages }}
+    <div class="archive-post">
+      <span class="archive-post-time">
+        {{ .Date.Format "01-02" }}
+      </span>
+      <span class="archive-post-title">
+        <a href="{{ .RelPermalink }}" class="archive-post-link">
+          {{ .Title }}
+        </a>
+      </span>
+    </div>
+    {{ end }}
+  {{ end }}
+</section>
+
+<!-- Pagination -->
+<nav class="pagination">
+  {{ with $paginator.Prev }}
+    <a class="prev" href="{{ .URL }}">
+      <span class="prev-text">Previous</span>
+    </a>
+  {{ end }}
+  {{ with $paginator.Next }}
+    <a class="next" href="{{ .URL }}">
+      <span class="next-text">Next</span>
+    </a>
+  {{ end }}
+</nav>
+{{ end }}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { text-align: center; }
+        a { text-decoration: none; color: #007bff; }
+        a:hover { text-decoration: underline; }
+    </style>
+    {{ partial "header.html" . }} 
+    {{ partial "head/css.html" . }}
+    {{ partial "head/js.html" . }}
+    {{ partial "head/math.html" . }}
+</head>
+<body>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <p class="post-date">{{ .Date.Format "2006-01-02" }}</p>
+    <div>{{ .Content }}</div>
+    <nav class="post-navigation">
+        {{ with .PrevInSection }}
+        <a class="prev-post" href="{{ .RelPermalink }}">← {{ .Title }}</a>
+        {{ end }}
+        {{ with .NextInSection }}
+        <a class="next-post" href="{{ .RelPermalink }}">{{ .Title }} →</a>
+        {{ end }}
+    </nav>
+</body>
+</html>
