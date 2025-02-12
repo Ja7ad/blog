@@ -1,0 +1,36 @@
+<!-- Meta Description (Post > Site Params) -->
+{{ if .Params.description }}
+<meta name="description" content="{{ .Params.description }}">
+{{ else if .Site.Params.description }}
+<meta name="description" content="{{ .Site.Params.description }}">
+{{ end }}
+
+<!-- Meta Keywords (Post > Site Params) -->
+{{ if .Params.keywords }}
+<meta name="keywords" content="{{ delimit .Params.keywords ", " }}">
+{{ else if .Site.Params.keywords }}
+<meta name="keywords" content="{{ delimit .Site.Params.keywords ", " }}">
+{{ end }}
+
+<meta name="author" content="{{ .Site.Params.author }}">
+<meta name="robots" content="index, follow">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph (OG) for social sharing -->
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ if .Params.description }}{{ .Params.description }}{{ else if .Site.Params.description }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ if .Params.image }}
+<meta property="og:image" content="{{ .Params.image }}">
+{{ end }}
+
+<!-- Twitter Card Metadata -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ if .Params.description }}{{ .Params.description }}{{ else if .Site.Params.description }}{{ .Site.Params.description }}{{ end }}">
+{{ if .Params.image }}
+<meta name="twitter:image" content="{{ .Params.image }}">
+{{ end }}

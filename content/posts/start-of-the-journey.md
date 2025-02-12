@@ -1,6 +1,8 @@
 ---
 title: "Start of the journey"
 date: 2025-02-11
+description: "Welcome to **The Engineer’s Notebook**, a place where I document my experiences, insights, and technical explorations as a software engineer."
+keywords: ["blog", "javad", "rajabzadeh", "javad rajabzadeh", "software engineer", "blockchain"]
 ---
 
 Welcome to **The Engineer’s Notebook**, a place where I document my experiences, insights, and technical explorations as a software engineer.  

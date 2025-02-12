@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1 { text-align: center; }
-        a { text-decoration: none; color: #007bff; }
-        a:hover { text-decoration: underline; }
-    </style>
+    
+     <!-- Meta Title -->
+     <title>{{ if .Title }}{{ .Title }} | {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+ 
     {{ partial "header.html" . }} 
     {{ partial "head/css.html" . }}
+    {{ partial "head/meta.html" . }}
     {{ partial "head/js.html" . }}
     {{ partial "head/math.html" . }}
 </head>

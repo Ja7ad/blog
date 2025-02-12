@@ -23,3 +23,7 @@ weight = 30
     extended = false
     min = "0.116.0"
 
+[params]
+author = 'Javad Rajabzadeh'
+description = 'The Engineer’s Notebook is a place where I document my experiences, insights, and technical explorations as a software engineer'
+keywords = ["javad rajabzadeh", "blockchain", "software engineering", "software"]
